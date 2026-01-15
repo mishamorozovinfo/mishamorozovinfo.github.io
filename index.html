@@ -772,27 +772,253 @@
     }
   </style>
 
-<!-- Structured Data for SEO -->
+<!-- ============================================
+     ENHANCED SEO SCHEMA MARKUP FOR MISHAMOROZOV.COM
+     
+     Copy this entire block and paste it in your <head> section,
+     right before </head>
+     
+     This includes:
+     1. LocalBusiness Schema - For Google Maps & Local Search
+     2. Person Schema - For professional credibility
+     3. FAQ Schema - For rich snippets in search results
+     ============================================ -->
+
+<!-- 1. LOCAL BUSINESS SCHEMA - Helps Google Maps & Local Pack -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": "https://mishamorozov.com/#business",
   "name": "Misha Morozov - Social Worker & NLP Psychotherapist",
-  "description": "Experienced Social Worker with Advanced NLP Therapy Skills for Individual and Lasting Transformation",
+  "alternateName": "Misha Morozov Terapi",
+  "description": "Experienced Social Worker with Advanced NLP Therapy Skills. Specializing in anxiety, depression, trauma, couples counseling, and social welfare navigation in Denmark.",
   "url": "https://mishamorozov.com",
   "telephone": "+45 50 30 03 60",
   "email": "info.mishamorozov@gmail.com",
+  "image": "https://mishamorozov.com/misha-photo.jpg",
+  "logo": "https://mishamorozov.com/logo.png",
+  "priceRange": "900-11500 DKK",
+  "currenciesAccepted": "DKK",
+  "paymentAccepted": "Bank Transfer, MobilePay",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Holstebro",
+    "addressRegion": "Central Jutland",
+    "addressCountry": "DK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "56.3600",
+    "longitude": "8.6200"
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Denmark"
+    },
+    {
+      "@type": "City",
+      "name": "Holstebro"
+    }
+  ],
+  "serviceType": [
+    "NLP Therapy",
+    "Social Work",
+    "Psychotherapy",
+    "Couples Counseling",
+    "Trauma Resolution",
+    "Anxiety Treatment",
+    "Depression Treatment",
+    "Migration Support",
+    "Social Welfare Navigation"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Therapy & Social Work Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Free Consultation",
+          "description": "20 minute free assessment session"
+        },
+        "price": "0",
+        "priceCurrency": "DKK"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Individual NLP Therapy",
+          "description": "60 minute individual therapy session with NLP techniques"
+        },
+        "price": "900",
+        "priceCurrency": "DKK"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Couples Counselling",
+          "description": "90 minute couples therapy session"
+        },
+        "price": "1400",
+        "priceCurrency": "DKK"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Social Work Consultation",
+          "description": "60 minute social work and case management"
+        },
+        "price": "1000",
+        "priceCurrency": "DKK"
+      }
+    ]
+  },
+  "availableLanguage": [
+    {
+      "@type": "Language",
+      "name": "Danish",
+      "alternateName": "da"
+    },
+    {
+      "@type": "Language",
+      "name": "English",
+      "alternateName": "en"
+    },
+    {
+      "@type": "Language",
+      "name": "Ukrainian",
+      "alternateName": "uk"
+    },
+    {
+      "@type": "Language",
+      "name": "Russian",
+      "alternateName": "ru"
+    }
+  ],
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "09:00",
+    "closes": "20:00"
+  },
+  "sameAs": []
+}
+</script>
+
+<!-- 2. PERSON SCHEMA - For professional credibility & Knowledge Panel -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://mishamorozov.com/#person",
+  "name": "Misha Morozov",
+  "jobTitle": "Social Worker & NLP Psychotherapist",
+  "description": "Accredited Danish Social Worker with NLP Master and Practitioner certification. Specializing in therapy, trauma resolution, and social welfare navigation.",
+  "url": "https://mishamorozov.com",
+  "image": "https://mishamorozov.com/misha-photo.jpg",
+  "email": "info.mishamorozov@gmail.com",
+  "telephone": "+45 50 30 03 60",
+  "knowsLanguage": ["Danish", "English", "Ukrainian", "Russian"],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Professional License",
+      "name": "Accredited Danish Social Worker"
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Certification",
+      "name": "NLP Practitioner & Master"
+    }
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Misha Morozov - Social Worker & NLP Psychotherapist",
+    "@id": "https://mishamorozov.com/#business"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Holstebro",
     "addressCountry": "DK"
-  },
-  "priceRange": "900-11500 DKK",
-  "serviceType": ["Social Work", "NLP Therapy", "Psychotherapy", "Couples Counseling", "Trauma Resolution"],
-  "availableLanguage": ["Danish", "English", "Ukrainian", "Russian"],
-  "areaServed": {
-    "@type": "Country",
-    "name": "Denmark"
+  }
+}
+</script>
+
+<!-- 3. FAQ SCHEMA - For rich snippets in Google search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What's the difference between therapy and social work services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Therapy focuses on mental health, emotional wellbeing, and personal growth using NLP techniques. Social work services help with practical life matters: navigating government systems, benefit applications, legal documentation, case management, and advocacy with authorities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What languages do you offer services in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I provide services in Danish, Ukrainian, Russian, and English. This is especially important when dealing with authorities, as I can help translate and ensure you fully understand your rights and obligations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you help with immigration and residency matters in Denmark?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. I provide support with residency applications, family reunification cases, integration programs, and navigating immigration services. My multilingual skills are particularly helpful for recent immigrants to Denmark."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of social welfare benefits can you help with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I assist with disability benefits (førtidspension), unemployment benefits (dagpenge), housing support (boligstøtte), family benefits, integration support, and other social welfare services available in Denmark. I help with applications, appeals, and communication with authorities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer online therapy sessions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, I offer secure online sessions via WhatsApp, Viber, or other video platforms. I also offer in-person sessions in Holstebro, Denmark. Flexible scheduling is available on weekdays and weekends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a therapy session cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A free 20-minute consultation is available. Individual NLP therapy sessions (60 min) cost 900 DKK. Intensive sessions (90 min) cost 1300 DKK. Couples sessions (90 min) cost 1400 DKK. Social work consultation packages range from 1000 to 11500 DKK depending on hours needed."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- 4. WEBSITE SCHEMA - For site links in search -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Misha Morozov - Social Worker & NLP Psychotherapist",
+  "url": "https://mishamorozov.com",
+  "description": "Professional therapy and social work services in Holstebro, Denmark",
+  "inLanguage": ["en", "da", "uk", "ru"],
+  "publisher": {
+    "@id": "https://mishamorozov.com/#person"
   }
 }
 </script>
