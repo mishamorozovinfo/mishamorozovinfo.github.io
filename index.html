@@ -75,6 +75,26 @@
    
     a { color: inherit; text-decoration: none; }
     a:hover { text-decoration: underline; }
+    /* Accessibility: Focus styles for keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.cta:focus-visible,
+.submit:focus-visible,
+#backToTop:focus-visible {
+  outline-offset: 4px;
+}
+
+.faq summary:focus-visible {
+  outline-offset: -2px;
+}
    
     .container { max-width:1200px; margin:0 auto; padding:0 20px; }
 
