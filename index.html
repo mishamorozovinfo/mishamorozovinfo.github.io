@@ -622,8 +622,513 @@
 </head>
 <body>
   <script>
+    // Translation data
+    const translations = {
+      en: {
+        skipToContent: "Skip to content",
+        brandName: "Misha Morozov — Social Worker and NLP Psychotherapist",
+        navHome: "Home",
+        navAbout: "About",
+        navServices: "Services",
+        navBooking: "Booking",
+        navContact: "Contact",
+        heroTitle: "Experienced Social Worker with Advanced NLP Therapy Skills for Your Individual and Lasting Transformation",
+        heroSubtitle: "Combining the power of Neuro-Linguistic Programming with compassionate psychotherapy. Specialized in rapid change techniques for individuals and couples. Available in-person in Holstebro city or secure online sessions across Denmark.",
+        heroCta: "Schedule a Consultation",
+        trustNLP: "NLP Master and Practitioner",
+        trustDegree: "Danish Social Worker Degree",
+        trustEducation: "Approved Education",
+        trustLanguages: "4 Languages",
+        trustOnline: "Online & In-Person",
+        aboutTitle: "About My Practice",
+        aboutPara1: "I support adults and couples through anxiety, depression, trauma, burnout, and major life transitions. My approach uniquely combines traditional social work principles with advanced NLP (Neuro-Linguistic Programming) techniques, creating powerful pathways for lasting transformation.",
+        aboutPara2: "We will work collaboratively—at your pace—to understand thought patterns, reprogram limiting beliefs, and build sustainable coping strategies. Using NLP's proven methods alongside compassionate therapy, every session is tailored to your unique needs and cultural background.",
+        aboutPara3: "As a Social Worker I can provide you through your individual case with patience and commitment. With my broad experience in Danish state I can assist you with a high level of service and let you feel the real meaning of empowerment. So take a try and book your free consultation with me and let us take the first step together.",
+        credentialsTitle: "Professional Credentials",
+        credential1: "Accredited Danish Social Worker",
+        credential2: "Psychotherapist training in NLP (Neuro-Linguistic Programming) Practitioner & Master",
+        credential3: "Education degree from one of the world's most leading programs",
+        portraitAlt: "Professional Photo",
+        servicesTitle: "Therapeutic Services",
+        service1Title: "Individual Therapy with NLP",
+        service1Desc: "One‑to‑one sessions combining traditional psychotherapy with NLP techniques. Focus on anxiety, depression, trauma recovery, and personal growth through pattern recognition, belief restructuring, and linguistic reframing.",
+        service2Title: "Couples Counselling",
+        service2Desc: "Improve communication patterns, navigate conflict using NLP rapport-building techniques, and rebuild trust. Inclusive support for all relationship structures and orientations.",
+        service3Title: "NLP Trauma Resolution",
+        service3Desc: "Advanced NLP trauma techniques including timeline therapy, anchoring positive states, and submodality work combined with traditional trauma-informed approaches in a safe environment.",
+        service4Title: "Anxiety & Phobia Treatment",
+        service4Desc: "Specialized NLP interventions including the Fast Phobia Cure, anxiety reframing techniques, and systematic desensitization combined with traditional therapeutic approaches.",
+        service5Title: "Life Transitions & Goal Achievement",
+        service5Desc: "NLP-powered support during career changes, migration challenges, and major life events. Includes goal-setting strategies, limiting belief removal, and future-pacing techniques.",
+        service6Title: "Stress & Performance Optimization",
+        service6Desc: "Advanced stress management using NLP anchoring, state management, and resource accessing techniques. Ideal for professionals seeking peak performance and sustainable wellbeing.",
+        bookingTitle: "Book an Appointment",
+        bookingFormTitle: "Select Your Service",
+        serviceType: "Service type",
+        serviceFree: "Free Consultation / Assessment (20 min.) - Free",
+        serviceIndividual: "Individual NLP Therapy/Consultation (60 min.) - 900 kr.",
+        serviceIntensive: "NLP Intensive Session/Consultation (90 min.) - 1300 kr.",
+        serviceCouples: "Couples NLP Session/Consultation (90 min) - 1400 kr.",
+        serviceSocial: "Social Work Consultation/Case Management (60 min.) - 1000 kr.",
+        serviceSocialBasic: "Social Work Consultation/Case Management Basic (240 min./4 Hours) - 3500 kr.",
+        serviceSocialMedium: "Social Work Consultation/Case Management Medium (600 min./10 Hours) - 8000 kr.",
+        serviceSocialLarge: "Social Work Consultation/Case Management Large (900 min./15 Hours) - 11500 kr.",
+        formName: "Your name (optional)",
+        formNamePlaceholder: "Enter your full name",
+        formEmail: "Email address",
+        formEmailPlaceholder: "your@email.com",
+        formPhone: "Phone (optional)",
+        formPhonePlaceholder: "+45 00 00 00 00",
+        formMessage: "Brief description (optional)",
+        formMessagePlaceholder: "Do you have any specific concerns?",
+        submitBtn: "Request Appointment",
+        sessionInfoTitle: "Session Information",
+        sessionSchedule: "🕒 Flexible scheduling: weekdays & weekends",
+        sessionInPerson: "📍 Possible in-person sessions",
+        sessionOnline: "💻 Online platforms: WhatsApp, Viber, or other alternative video platforms",
+        sessionLanguages: "🌍 Languages: Danish, Ukrainian, Russian, in some cases - English",
+        sessionPayment: "💳 Payment: Bank Transfer or MobilePay",
+        contactTitle: "Contact Information",
+        contactEmail: "📧 Email:",
+        contactPhone: "📱 Phone:",
+        contactWhatsApp: "📱 WhatsApp:",
+        contactViber: "📱 Viber:",
+        contactLocation: "📍 Location:",
+        contactHours: "🕒 Hours:",
+        contactLocationValue: "Holstebro, Denmark",
+        contactHoursValue: "By appointment only",
+        contactText: "Feel free to reach out with any questions about services, scheduling, or how NLP therapy can help you. I typically respond within 24 hours.",
+        footerCopyright: "© 2026 Misha Morozov. All rights reserved.",
+        footerDisclaimer: "This website does not provide emergency mental health services.",
+        statusSuccess: "Thank you! Your appointment request has been received. You will be contacted within 24 hours to confirm your session.",
+        statusError: "Sorry, there was an error sending your request. Please try again or contact directly via email.",
+        statusInvalidEmail: "Please enter a valid email address.",
+        btnSending: "Sending..."
+      },
+      da: {
+        skipToContent: "Spring til indhold",
+        brandName: "Misha Morozov — Socialrådgiver og NLP Psykoterapeut",
+        navHome: "Hjem",
+        navAbout: "Om",
+        navServices: "Tjenester",
+        navBooking: "Booking",
+        navContact: "Kontakt",
+        heroTitle: "Erfaren Socialrådgiver med Avancerede NLP Terapifærdigheder til Din Individuelle og Varige Transformation",
+        heroSubtitle: "Kombinerer kraften fra Neuro-Lingvistisk Programmering med medfølende psykoterapi. Specialiseret i hurtige forandringsteknikker for enkeltpersoner og par. Tilgængelig personligt i Holstebro by eller sikre online-sessioner i hele Danmark.",
+        heroCta: "Book en Konsultation",
+        trustNLP: "NLP Mester og Practitioner",
+        trustDegree: "Dansk Socialrådgiver Grad",
+        trustEducation: "Godkendt Uddannelse",
+        trustLanguages: "4 Sprog",
+        trustOnline: "Online & Personligt",
+        aboutTitle: "Om Min Praksis",
+        aboutPara1: "Jeg støtter voksne og par gennem angst, depression, traume, udbrændthed og større livsovergange. Min tilgang kombinerer unikt traditionelle socialarbejdsprincipper med avancerede NLP (Neuro-Lingvistisk Programmering) teknikker, hvilket skaber kraftfulde veje til varig transformation.",
+        aboutPara2: "Vi vil arbejde sammen—i dit tempo—for at forstå tankemønstre, omprogrammere begrænsende overbevisninger og opbygge bæredygtige mestringsstrategier. Ved at bruge NLP's dokumenterede metoder sammen med medfølende terapi, er hver session skræddersyet til dine unikke behov og kulturelle baggrund.",
+        aboutPara3: "Som socialrådgiver kan jeg hjælpe dig gennem din individuelle sag med tålmodighed og engagement. Med min brede erfaring i den danske stat kan jeg hjælpe dig med et højt serviceniveau og lade dig føle den virkelige betydning af empowerment. Så prøv det og book din gratis konsultation med mig, og lad os tage det første skridt sammen.",
+        credentialsTitle: "Professionelle Kvalifikationer",
+        credential1: "Akkrediteret Dansk Socialrådgiver",
+        credential2: "Psykoterapeut træning i NLP (Neuro-Lingvistisk Programmering) Practitioner & Master",
+        credential3: "Uddannelsesgrad fra et af verdens førende programmer",
+        portraitAlt: "Professionelt Foto",
+        servicesTitle: "Terapeutiske Tjenester",
+        service1Title: "Individuel Terapi med NLP",
+        service1Desc: "En-til-en sessioner, der kombinerer traditionel psykoterapi med NLP-teknikker. Fokus på angst, depression, traumebehandling og personlig vækst gennem mønstergenkendelse, trosomstrukturering og sproglig reframing.",
+        service2Title: "Parterapi",
+        service2Desc: "Forbedre kommunikationsmønstre, naviger konflikter ved hjælp af NLP rapport-opbyggende teknikker og genopbyg tillid. Inklusiv støtte til alle relationsstrukturer og orienteringer.",
+        service3Title: "NLP Traumeløsning",
+        service3Desc: "Avancerede NLP traumeteknikker, herunder tidslinjebehandling, forankring af positive tilstande og submodalitetsarbejde kombineret med traditionelle traumeinformerede tilgange i et sikkert miljø.",
+        service4Title: "Angst & Fobibehandling",
+        service4Desc: "Specialiserede NLP-interventioner, herunder Fast Phobia Cure, angst-reframing-teknikker og systematisk desensibilisering kombineret med traditionelle terapeutiske tilgange.",
+        service5Title: "Livsovergange & Målopnåelse",
+        service5Desc: "NLP-drevet støtte under karriereskift, migrationsudfordringer og store livsbegivenheder. Inkluderer målsætningsstrategier, fjernelse af begrænsende overbevisninger og fremtidsplaceringsteknikker.",
+        service6Title: "Stress & Præstationsoptimering",
+        service6Desc: "Avanceret stresshåndtering ved hjælp af NLP-forankring, tilstandsstyring og ressourceadgangsteknikker. Ideel til professionelle, der søger toppræstation og bæredygtigt velvære.",
+        bookingTitle: "Book en Tid",
+        bookingFormTitle: "Vælg Din Tjeneste",
+        serviceType: "Tjenestetype",
+        serviceFree: "Gratis Konsultation / Vurdering (20 min.) - Gratis",
+        serviceIndividual: "Individuel NLP Terapi/Konsultation (60 min.) - 900 kr.",
+        serviceIntensive: "NLP Intensiv Session/Konsultation (90 min.) - 1300 kr.",
+        serviceCouples: "Par NLP Session/Konsultation (90 min) - 1400 kr.",
+        serviceSocial: "Socialrådgivning/Sagsbehandling (60 min.) - 1000 kr.",
+        serviceSocialBasic: "Socialrådgivning/Sagsbehandling Basis (240 min./4 Timer) - 3500 kr.",
+        serviceSocialMedium: "Socialrådgivning/Sagsbehandling Medium (600 min./10 Timer) - 8000 kr.",
+        serviceSocialLarge: "Socialrådgivning/Sagsbehandling Stor (900 min./15 Timer) - 11500 kr.",
+        formName: "Dit navn (valgfrit)",
+        formNamePlaceholder: "Indtast dit fulde navn",
+        formEmail: "E-mailadresse",
+        formEmailPlaceholder: "din@email.dk",
+        formPhone: "Telefon (valgfrit)",
+        formPhonePlaceholder: "+45 00 00 00 00",
+        formMessage: "Kort beskrivelse (valgfrit)",
+        formMessagePlaceholder: "Har du specifikke bekymringer?",
+        submitBtn: "Anmod om Tid",
+        sessionInfoTitle: "Sessioninformation",
+        sessionSchedule: "🕒 Fleksibel planlægning: hverdage & weekender",
+        sessionInPerson: "📍 Mulige personlige sessioner",
+        sessionOnline: "💻 Online platforme: WhatsApp, Viber eller andre alternative videoplatforme",
+        sessionLanguages: "🌍 Sprog: Dansk, Ukrainsk, Russisk, i nogle tilfælde - Engelsk",
+        sessionPayment: "💳 Betaling: Bankoverførsel eller MobilePay",
+        contactTitle: "Kontaktinformation",
+        contactEmail: "📧 E-mail:",
+        contactPhone: "📱 Telefon:",
+        contactWhatsApp: "📱 WhatsApp:",
+        contactViber: "📱 Viber:",
+        contactLocation: "📍 Placering:",
+        contactHours: "🕒 Åbningstider:",
+        contactLocationValue: "Holstebro, Danmark",
+        contactHoursValue: "Kun efter aftale",
+        contactText: "Du er velkommen til at kontakte mig med spørgsmål om tjenester, planlægning eller hvordan NLP-terapi kan hjælpe dig. Jeg svarer typisk inden for 24 timer.",
+        footerCopyright: "© 2026 Misha Morozov. Alle rettigheder forbeholdes.",
+        footerDisclaimer: "Denne hjemmeside tilbyder ikke akutte psykiske sundhedstjenester.",
+        statusSuccess: "Tak! Din forespørgsel om tid er modtaget. Du vil blive kontaktet inden for 24 timer for at bekræfte din session.",
+        statusError: "Beklager, der opstod en fejl ved afsendelse af din forespørgsel. Prøv venligst igen eller kontakt direkte via e-mail.",
+        statusInvalidEmail: "Indtast venligst en gyldig e-mailadresse.",
+        btnSending: "Sender..."
+      },
+      uk: {
+        skipToContent: "Перейти до вмісту",
+        brandName: "Міша Морозов — Соціальний працівник та NLP Психотерапевт",
+        navHome: "Головна",
+        navAbout: "Про мене",
+        navServices: "Послуги",
+        navBooking: "Запис",
+        navContact: "Контакти",
+        heroTitle: "Досвідчений соціальний працівник з передовими навичками НЛП-терапії для вашої індивідуальної та тривалої трансформації",
+        heroSubtitle: "Поєднання сили нейро-лінгвістичного програмування з співчутливою психотерапією. Спеціалізуюся на техніках швидких змін для окремих осіб та пар. Доступні особисті зустрічі в місті Хольстебро або безпечні онлайн-сесії по всій Данії.",
+        heroCta: "Записатися на консультацію",
+        trustNLP: "Майстер та практик НЛП",
+        trustDegree: "Датський диплом соціального працівника",
+        trustEducation: "Затверджена освіта",
+        trustLanguages: "4 мови",
+        trustOnline: "Онлайн та особисто",
+        aboutTitle: "Про мою практику",
+        aboutPara1: "Я підтримую дорослих та пари у подоланні тривоги, депресії, травми, вигорання та важливих життєвих переходів. Мій підхід унікально поєднує традиційні принципи соціальної роботи з передовими технікамиНЛП (нейро-лінгвістичне програмування), створюючи потужні шляхи до тривалої трансформації.",
+        aboutPara2: "Ми працюватимемо разом — у вашому темпі — щоб зрозуміти шаблони мислення, перепрограмувати обмежуючі переконання та побудувати стійкі стратегії подолання. Використовуючи перевірені методи НЛП разом із співчутливою терапією, кожна сесія адаптована до ваших унікальних потреб та культурного походження.",
+        aboutPara3: "Як соціальний працівник я можу допомогти вам у вашому індивідуальному випадку з терпінням та відданістю. Завдяки моєму широкому досвіду роботи в Данії я можу надати вам високий рівень обслуговування та дати вам відчути справжнє значення розширення можливостей. Тож спробуйте і забронюйте безкоштовну консультацію зі мною, і давайте зробимо перший крок разом.",
+        credentialsTitle: "Професійні кваліфікації",
+        credential1: "Акредитований датський соціальний працівник",
+        credential2: "Підготовка психотерапевта з НЛП (нейро-лінгвістичне програмування) практик і майстер",
+        credential3: "Освітній ступінь з однієї з провідних світових програм",
+        portraitAlt: "Професійне фото",
+        servicesTitle: "Терапевтичні послуги",
+        service1Title: "Індивідуальна терапія з НЛП",
+        service1Desc: "Індивідуальні сесії, що поєднують традиційну психотерапію з техніками НЛП. Фокус на тривозі, депресії, відновленні після травми та особистісному зростанні через розпізнавання патернів, реструктуризацію переконань та лінгвістичний рефреймінг.",
+        service2Title: "Консультування пар",
+        service2Desc: "Покращення моделей спілкування, навігація конфліктів за допомогою технік НЛП побудови рапорту та відновлення довіри. Інклюзивна підтримка для всіх структур стосунків та орієнтацій.",
+        service3Title: "Вирішення травм за допомогою НЛП",
+        service3Desc: "Передові техніки НЛП для роботи з травмою, включаючи терапію часової лінії, закріплення позитивних станів та роботу з субмодальностями в поєднанні з традиційними підходами до інформування про травму в безпечному середовищі.",
+        service4Title: "Лікування тривоги та фобій",
+        service4Desc: "Спеціалізовані втручання НЛП, включаючи швидке лікування фобій, техніки рефреймінгу тривоги та систематичну десенсибілізацію в поєднанні з традиційними терапевтичними підходами.",
+        service5Title: "Життєві переходи та досягнення цілей",
+        service5Desc: "Підтримка на основі НЛП під час змін кар'єри, міграційних викликів та важливих життєвих подій. Включає стратегії постановки цілей, усунення обмежуючих переконань та техніки майбутньої кардіостимуляції.",
+        service6Title: "Оптимізація стресу та продуктивності",
+        service6Desc: "Просунуте управління стресом за допомогою закріплення НЛП, управління станом та технік доступу до ресурсів. Ідеально підходить для професіоналів, які шукають максимальної продуктивності та стійкого добробуту.",
+        bookingTitle: "Забронювати зустріч",
+        bookingFormTitle: "Виберіть свою послугу",
+        serviceType: "Тип послуги",
+        serviceFree: "Безкоштовна консультація / Оцінка (20 хв.) - Безкоштовно",
+        serviceIndividual: "Індивідуальна НЛП терапія/Консультація (60 хв.) - 900 кр.",
+        serviceIntensive: "Інтенсивна НЛП сесія/Консультація (90 хв.) - 1300 кр.",
+        serviceCouples: "НЛП сесія/Консультація для пар (90 хв) - 1400 кр.",
+        serviceSocial: "Консультація соціального працівника/Ведення справ (60 хв.) - 1000 кр.",
+        serviceSocialBasic: "Консультація соціального працівника/Ведення справ Базовий (240 хв./4 години) - 3500 кр.",
+        serviceSocialMedium: "Консультація соціального працівника/Ведення справ Середній (600 хв./10 годин) - 8000 кр.",
+        serviceSocialLarge: "Консультація соціального працівника/Ведення справ Великий (900 хв./15 годин) - 11500 кр.",
+        formName: "Ваше ім'я (необов'язково)",
+        formNamePlaceholder: "Введіть ваше повне ім'я",
+        formEmail: "Електронна адреса",
+        formEmailPlaceholder: "ваша@пошта.ua",
+        formPhone: "Телефон (необов'язково)",
+        formPhonePlaceholder: "+45 00 00 00 00",
+        formMessage: "Короткий опис (необов'язково)",
+        formMessagePlaceholder: "Чи є у вас конкретні занепокоєння?",
+        submitBtn: "Запитати зустріч",
+        sessionInfoTitle: "Інформація про сесію",
+        sessionSchedule: "🕒 Гнучкий графік: будні та вихідні",
+        sessionInPerson: "📍 Можливі особисті зустрічі",
+        sessionOnline: "💻 Онлайн платформи: WhatsApp, Viber або інші альтернативні відеоплатформи",
+        sessionLanguages: "🌍 Мови: данська, українська, російська, в деяких випадках - англійська",
+        sessionPayment: "💳 Оплата: банківський переказ або MobilePay",
+        contactTitle: "Контактна інформація",
+        contactEmail: "📧 Електронна пошта:",
+        contactPhone: "📱 Телефон:",
+        contactWhatsApp: "📱 WhatsApp:",
+        contactViber: "📱 Viber:",
+        contactLocation: "📍 Місцезнаходження:",
+        contactHours: "🕒 Години роботи:",
+        contactLocationValue: "Хольстебро, Данія",
+        contactHoursValue: "Тільки за домовленістю",
+        contactText: "Звертайтеся з будь-якими питаннями про послуги, планування або про те, як терапія НЛП може вам допомогти. Зазвичай я відповідаю протягом 24 годин.",
+        footerCopyright: "© 2026 Міша Морозов. Усі права захищені.",
+        footerDisclaimer: "Цей веб-сайт не надає екстрених послуг психічного здоров'я.",
+        statusSuccess: "Дякую! Ваш запит на зустріч отримано. З вами зв'яжуться протягом 24 годин для підтвердження сесії.",
+        statusError: "Вибачте, під час надсилання вашого запиту сталася помилка. Будь ласка, спробуйте ще раз або зв'яжіться безпосередньо електронною поштою.",
+        statusInvalidEmail: "Будь ласка, введіть дійсну адресу електронної пошти.",
+        btnSending: "Надсилання..."
+      },
+      ru: {
+        skipToContent: "Перейти к содержанию",
+        brandName: "Миша Морозов — Социальный работник и NLP Психотерапевт",
+        navHome: "Главная",
+        navAbout: "О мне",
+        navServices: "Услуги",
+        navBooking: "Запись",
+        navContact: "Контакты",
+        heroTitle: "Опытный социальный работник с передовыми навыками НЛП-терапии для вашей индивидуальной и длительной трансформации",
+        heroSubtitle: "Сочетание силы нейро-лингвистического программирования с сострадательной психотерапией. Специализируюсь на техниках быстрых изменений для отдельных людей и пар. Доступны личные встречи в городе Хольстебро или безопасные онлайн-сессии по всей Дании.",
+        heroCta: "Записаться на консультацию",
+        trustNLP: "Мастер и практик НЛП",
+        trustDegree: "Датский диплом социального работника",
+        trustEducation: "Утвержденное образование",
+        trustLanguages: "4 языка",
+        trustOnline: "Онлайн и лично",
+        aboutTitle: "О моей практике",
+        aboutPara1: "Я поддерживаю взрослых и пары в преодолении тревоги, депрессии, травмы, выгорания и важных жизненных переходов. Мой подход уникально сочетает традиционные принципы социальной работы с передовыми техниками НЛП (нейро-лингвистическое программирование), создавая мощные пути к длительной трансформации.",
+        aboutPara2: "Мы будем работать вместе — в вашем темпе — чтобы понять шаблоны мышления, перепрограммировать ограничивающие убеждения и построить устойчивые стратегии преодоления. Используя проверенные методы НЛП вместе с сострадательной терапией, каждая сессия адаптирована к вашим уникальным потребностям и культурному происхождению.",
+        aboutPara3: "Как социальный работник я могу помочь вам в вашем индивидуальном случае с терпением и преданностью. Благодаря моему широкому опыту работы в Дании я могу предоставить вам высокий уровень обслуживания и дать вам почувствовать истинное значение расширения возможностей. Так что попробуйте и забронируйте бесплатную консультацию со мной, и давайте сделаем первый шаг вместе.",
+        credentialsTitle: "Профессиональные квалификации",
+        credential1: "Аккредитованный датский социальный работник",
+        credential2: "Подготовка психотерапевта по НЛП (нейро-лингвистическое программирование) практик и мастер",
+        credential3: "Образовательная степень из одной из ведущих мировых программ",
+        portraitAlt: "Профессиональное фото",
+        servicesTitle: "Терапевтические услуги",
+        service1Title: "Индивидуальная терапия с НЛП",
+        service1Desc: "Индивидуальные сессии, сочетающие традиционную психотерапию с техниками НЛП. Фокус на тревоге, депрессии, восстановлении после травмы и личностном росте через распознавание паттернов, реструктуризацию убеждений и лингвистический рефрейминг.",
+        service2Title: "Консультирование пар",
+        service2Desc: "Улучшение моделей общения, навигация конфликтов с помощью техник НЛП построения раппорта и восстановление доверия. Инклюзивная поддержка для всех структур отношений и ориентаций.",
+        service3Title: "Решение травм с помощью НЛП",
+        service3Desc: "Передовые техники НЛП для работы с травмой, включая терапию временной линии, закрепление позитивных состояний и работу с субмодальностями в сочетании с традиционными подходами к информированию о травме в безопасной среде.",
+        service4Title: "Лечение тревоги и фобий",
+        service4Desc: "Специализированные вмешательства НЛП, включая быстрое лечение фобий, техники рефрейминга тревоги и систематическую десенсибилизацию в сочетании с традиционными терапевтическими подходами.",
+        service5Title: "Жизненные переходы и достижение целей",
+        service5Desc: "Поддержка на основе НЛП во время смены карьеры, миграционных вызовов и важных жизненных событий. Включает стратегии постановки целей, устранение ограничивающих убеждений и техники будущей кардиостимуляции.",
+        service6Title: "Оптимизация стресса и производительности",
+        service6Desc: "Продвинутое управление стрессом с помощью закрепления НЛП, управления состоянием и техник доступа к ресурсам. Идеально подходит для профессионалов, ищущих максимальной производительности и устойчивого благополучия.",
+        bookingTitle: "Забронировать встречу",
+        bookingFormTitle: "Выберите свою услугу",
+        serviceType: "Тип услуги",
+        serviceFree: "Бесплатная консультация / Оценка (20 мин.) - Бесплатно",
+        serviceIndividual: "Индивидуальная НЛП терапия/Консультация (60 мин.) - 900 кр.",
+        serviceIntensive: "Интенсивная НЛП сессия/Консультация (90 мин.) - 1300 кр.",
+        serviceCouples: "НЛП сессия/Консультация для пар (90 мин) - 1400 кр.",
+        serviceSocial: "Консультация социального работника/Ведение дел (60 мин.) - 1000 кр.",
+        serviceSocialBasic: "Консультация социального работника/Ведение дел Базовый (240 мин./4 часа) - 3500 кр.",
+        serviceSocialMedium: "Консультация социального работника/Ведение дел Средний (600 мин./10 часов) - 8000 кр.",
+        serviceSocialLarge: "Консультация социального работника/Ведение дел Большой (900 мин./15 часов) - 11500 кр.",
+        formName: "Ваше имя (необязательно)",
+        formNamePlaceholder: "Введите ваше полное имя",
+        formEmail: "Электронная почта",
+        formEmailPlaceholder: "ваша@почта.ru",
+        formPhone: "Телефон (необязательно)",
+        formPhonePlaceholder: "+45 00 00 00 00",
+        formMessage: "Краткое описание (необязательно)",
+        formMessagePlaceholder: "Есть ли у вас конкретные беспокойства?",
+        submitBtn: "Запросить встречу",
+        sessionInfoTitle: "Информация о сессии",
+        sessionSchedule: "🕒 Гибкий график: будни и выходные",
+        sessionInPerson: "📍 Возможны личные встречи",
+        sessionOnline: "💻 Онлайн платформы: WhatsApp, Viber или другие альтернативные видеоплатформы",
+        sessionLanguages: "🌍 Языки: датский, украинский, русский, в некоторых случаях - английский",
+        sessionPayment: "💳 Оплата: банковский перевод или MobilePay",
+        contactTitle: "Контактная информация",
+        contactEmail: "📧 Электронная почта:",
+        contactPhone: "📱 Телефон:",
+        contactWhatsApp: "📱 WhatsApp:",
+        contactViber: "📱 Viber:",
+        contactLocation: "📍 Местоположение:",
+        contactHours: "🕒 Часы работы:",
+        contactLocationValue: "Хольстебро, Дания",
+        contactHoursValue: "Только по предварительной записи",
+        contactText: "Обращайтесь с любыми вопросами об услугах, планировании или о том, как терапия НЛП может вам помочь. Обычно я отвечаю в течение 24 часов.",
+        footerCopyright: "© 2026 Миша Морозов. Все права защищены.",
+        footerDisclaimer: "Этот веб-сайт не предоставляет экстренные услуги психического здоровья.",
+        statusSuccess: "Спасибо! Ваш запрос на встречу получен. С вами свяжутся в течение 24 часов для подтверждения сессии.",
+        statusError: "Извините, произошла ошибка при отправке вашего запроса. Пожалуйста, попробуйте еще раз или свяжитесь напрямую по электронной почте.",
+        statusInvalidEmail: "Пожалуйста, введите действительный адрес электронной почты.",
+        btnSending: "Отправка..."
+      }
+    };
+
+    let currentLang = 'en';
+
+    // Translation function with safety checks
+    function translatePage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      
+      // Helper function to safely update element
+      function updateElement(selector, content, isHTML = false) {
+        const element = document.querySelector(selector);
+        if (element) {
+          if (isHTML) {
+            element.innerHTML = content;
+          } else {
+            element.textContent = content;
+          }
+        }
+      }
+      
+      // Update all translatable elements
+      updateElement('.skip-link', t.skipToContent);
+      updateElement('.brand-name', t.brandName);
+      
+      // Nav links
+      const navLinks = document.querySelectorAll('.nav-link');
+      if (navLinks.length >= 5) {
+        navLinks[0].textContent = t.navHome;
+        navLinks[1].textContent = t.navAbout;
+        navLinks[2].textContent = t.navServices;
+        navLinks[3].textContent = t.navBooking;
+        navLinks[4].textContent = t.navContact;
+      }
+      
+      // Hero section
+      updateElement('.hero h1', t.heroTitle);
+      updateElement('.hero > .container > .hero-inner > p', t.heroSubtitle);
+      updateElement('.cta span:first-child', t.heroCta);
+      
+      // Trust indicators
+      const trustItems = document.querySelectorAll('.trust-item span:last-child');
+      if (trustItems.length >= 5) {
+        trustItems[0].textContent = t.trustNLP;
+        trustItems[1].textContent = t.trustDegree;
+        trustItems[2].textContent = t.trustEducation;
+        trustItems[3].textContent = t.trustLanguages;
+        trustItems[4].textContent = t.trustOnline;
+      }
+      
+      // About section
+      updateElement('#about .section-title', t.aboutTitle);
+      const aboutParagraphs = document.querySelectorAll('#about .about-grid > div:first-child > p');
+      if (aboutParagraphs.length >= 3) {
+        aboutParagraphs[0].textContent = t.aboutPara1;
+        aboutParagraphs[1].textContent = t.aboutPara2;
+        aboutParagraphs[2].textContent = t.aboutPara3;
+      }
+      
+      updateElement('.card h3', t.credentialsTitle);
+      const credentials = document.querySelectorAll('.card li');
+      if (credentials.length >= 3) {
+        credentials[0].textContent = t.credential1;
+        credentials[1].textContent = t.credential2;
+        credentials[2].textContent = t.credential3;
+      }
+      
+      updateElement('.portrait-fallback', `${t.portraitAlt}<br><small style="opacity:.7">Misha Morozov</small>`, true);
+      
+      // Services section
+      updateElement('#services .section-title', t.servicesTitle);
+      const services = document.querySelectorAll('.service');
+      if (services.length >= 6) {
+        services[0].querySelector('h3').textContent = t.service1Title;
+        services[0].querySelector('p').textContent = t.service1Desc;
+        services[1].querySelector('h3').textContent = t.service2Title;
+        services[1].querySelector('p').textContent = t.service2Desc;
+        services[2].querySelector('h3').textContent = t.service3Title;
+        services[2].querySelector('p').textContent = t.service3Desc;
+        services[3].querySelector('h3').textContent = t.service4Title;
+        services[3].querySelector('p').textContent = t.service4Desc;
+        services[4].querySelector('h3').textContent = t.service5Title;
+        services[4].querySelector('p').textContent = t.service5Desc;
+        services[5].querySelector('h3').textContent = t.service6Title;
+        services[5].querySelector('p').textContent = t.service6Desc;
+      }
+      
+      // Booking section
+      updateElement('#booking .section-title', t.bookingTitle);
+      updateElement('#bookingForm h3', t.bookingFormTitle);
+      updateElement('label[for="service"]', t.serviceType);
+      
+      const serviceOptions = document.querySelectorAll('#service option');
+      if (serviceOptions.length >= 8) {
+        serviceOptions[0].textContent = t.serviceFree;
+        serviceOptions[1].textContent = t.serviceIndividual;
+        serviceOptions[2].textContent = t.serviceIntensive;
+        serviceOptions[3].textContent = t.serviceCouples;
+        serviceOptions[4].textContent = t.serviceSocial;
+        serviceOptions[5].textContent = t.serviceSocialBasic;
+        serviceOptions[6].textContent = t.serviceSocialMedium;
+        serviceOptions[7].textContent = t.serviceSocialLarge;
+      }
+      
+      updateElement('label[for="bk_name"]', t.formName);
+      const nameInput = document.querySelector('#bk_name');
+      if (nameInput) nameInput.placeholder = t.formNamePlaceholder;
+      
+      updateElement('label[for="bk_email"]', t.formEmail);
+      const emailInput = document.querySelector('#bk_email');
+      if (emailInput) emailInput.placeholder = t.formEmailPlaceholder;
+      
+      updateElement('label[for="bk_phone"]', t.formPhone);
+      const phoneInput = document.querySelector('#bk_phone');
+      if (phoneInput) phoneInput.placeholder = t.formPhonePlaceholder;
+      
+      updateElement('label[for="bk_message"]', t.formMessage);
+      const messageInput = document.querySelector('#bk_message');
+      if (messageInput) messageInput.placeholder = t.formMessagePlaceholder;
+      
+      updateElement('#bookingBtn', t.submitBtn);
+      
+      updateElement('.glass h3', t.sessionInfoTitle);
+      const sessionInfo = document.querySelectorAll('.glass p');
+      if (sessionInfo.length >= 5) {
+        sessionInfo[0].textContent = t.sessionSchedule;
+        sessionInfo[1].textContent = t.sessionInPerson;
+        sessionInfo[2].textContent = t.sessionOnline;
+        sessionInfo[3].textContent = t.sessionLanguages;
+        sessionInfo[4].textContent = t.sessionPayment;
+      }
+      
+      // Contact section
+      updateElement('#contact .section-title', t.contactTitle);
+      const contactInfo = document.querySelectorAll('.info-list p');
+      if (contactInfo.length >= 6) {
+        contactInfo[0].innerHTML = `<strong>${t.contactEmail}</strong> info.mishamorozov@gmail.com`;
+        contactInfo[1].innerHTML = `<strong>${t.contactPhone}</strong> +45 50 30 03 60`;
+        contactInfo[2].innerHTML = `<strong>${t.contactWhatsApp}</strong> +45 50 30 03 60`;
+        contactInfo[3].innerHTML = `<strong>${t.contactViber}</strong> +45 50 30 03 60`;
+        contactInfo[4].innerHTML = `<strong>${t.contactLocation}</strong> ${t.contactLocationValue}`;
+        contactInfo[5].innerHTML = `<strong>${t.contactHours}</strong> ${t.contactHoursValue}`;
+      }
+      
+      updateElement('.contact-grid > div:last-child > p', t.contactText);
+      
+      // Footer
+      updateElement('footer p:first-child', t.footerCopyright);
+      updateElement('footer p:last-child', t.footerDisclaimer);
+      
+      // Save language preference
+      try {
+        localStorage.setItem('preferredLanguage', lang);
+      } catch (e) {
+        // localStorage might not be available
+      }
+    }
+
     // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function() {
+      // Load saved language or default to English
+      let savedLang = 'en';
+      try {
+        savedLang = localStorage.getItem('preferredLanguage') || 'en';
+      } catch (e) {
+        // localStorage might not be available
+      }
+      
+      const langSelect = document.getElementById('lang');
+      if (langSelect) {
+        langSelect.value = savedLang;
+      }
+      translatePage(savedLang);
+      
+      // Language selector
+      if (langSelect) {
+        langSelect.addEventListener('change', function(e) {
+          translatePage(e.target.value);
+        });
+      }
+      
       const menuToggle = document.getElementById('mobileMenuToggle');
       const navLinks = document.getElementById('navLinks');
       
@@ -671,23 +1176,23 @@
     async function handleBooking(e) {
       e.preventDefault();
       
+      const t = translations[currentLang];
       const email = document.getElementById('bk_email').value;
       const status = document.getElementById('bookingStatus');
       const submitBtn = document.getElementById('bookingBtn');
       
       if (!email || !email.includes('@')) {
         status.className = 'status error';
-        status.textContent = 'Please enter a valid email address.';
+        status.textContent = t.statusInvalidEmail;
         return;
       }
 
       // Disable button and show loading
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
+      submitBtn.textContent = t.btnSending;
       status.className = '';
       status.textContent = '';
 
-      // Security: Access key stored in JavaScript (obfuscated)
       // REPLACE THIS WITH YOUR WEB3FORMS ACCESS KEY
       const accessKey = '19d28277-edf3-4e9d-a74e-3ece5cecc345';
       
@@ -695,6 +1200,7 @@
       formData.append('access_key', accessKey);
       formData.append('subject', 'New Appointment Request from Website');
       formData.append('from_name', 'Misha Morozov Website');
+      formData.append('language', currentLang);
 
       try {
         const response = await fetch('https://api.web3forms.com/submit', {
@@ -706,7 +1212,7 @@
 
         if (data.success) {
           status.className = 'status success';
-          status.textContent = 'Thank you! Your appointment request has been received. You will be contacted within 24 hours to confirm your session.';
+          status.textContent = t.statusSuccess;
           
           // Clear form
           e.target.reset();
@@ -715,11 +1221,11 @@
         }
       } catch (error) {
         status.className = 'status error';
-        status.textContent = 'Sorry, there was an error sending your request. Please try again or contact directly via email.';
+        status.textContent = t.statusError;
       } finally {
         // Re-enable button
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Request Appointment';
+        submitBtn.textContent = t.submitBtn;
       }
     }
   </script>
@@ -928,7 +1434,6 @@
       <p>© 2026 Misha Morozov. All rights reserved.</p>
       <p>This website does not provide emergency mental health services.</p>
     </div>
-
-
-
-
+  </footer>
+</body>
+</html>
