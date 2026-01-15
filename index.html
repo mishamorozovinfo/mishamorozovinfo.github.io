@@ -778,6 +778,24 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+
+    @media print {
+      header, .hero, .trust-indicators, .cta, .mobile-menu-toggle, #backToTop { display: none; }
+      body { background: white; color: black; }
+      .about, .services, .booking, .contact, .faq, .who-i-help { background: white; color: black; padding: 1rem 0; }
+      .section-title { color: black; }
+      .section-title::after { background: black; }
+      .card, .service, .help-card, .glass { 
+        background: white;
+        border: 1px solid #ccc; 
+        break-inside: avoid;
+        color: black;
+      }
+      .card h3, .service h3, .help-card h3, .glass h3 { color: black; }
+      .card li, .service p, .help-card p, .glass p { color: #333; }
+      .faq details { background: white; border: 1px solid #ccc; }
+      .faq summary, .faq details p { color: black; }
+    }
   </style>
 
 <!-- ============================================
