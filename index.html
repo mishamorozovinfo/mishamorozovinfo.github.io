@@ -1821,11 +1821,18 @@
       <div class="container">
         <h2 class="section-title">Book an Appointment</h2>
         <div class="booking-grid">
-          <div>
-            <form id="bookingForm" class="card">
-              <h3>Select Your Service</h3>
-              
-              <div class="form-group" style="margin-top:1rem">
+         <div>
+         <form id="bookingForm" class="card">
+    
+        <!-- Honeypot anti-spam -->
+    <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;" aria-hidden="true">
+      <label for="website">Website (leave blank)</label>
+      <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+    </div>
+    
+    <h3>Select Your Service</h3>
+    
+    <div class="form-group" style="margin-top:1rem">
                 <label for="service">Service type</label>
                 <select id="service" name="service" required>
                   <option value="free-consultation">Free Consultation / Assessment (20 min.) - Free</option>
