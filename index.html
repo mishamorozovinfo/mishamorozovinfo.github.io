@@ -2115,9 +2115,11 @@ function throttle(func, limit) {
         } else {
           throw new Error('Form submission failed');
         }
-      } catch (error) {
-        status.className = 'status error';
-        status.textContent = t.statusError;
+     } catch (error) {
+  console.error('Form submission error:', error);
+  status.className = 'status error';
+  status.textContent = t.statusError;
+}
       } finally {
      // Re-enable button
      submitBtn.disabled = false;
