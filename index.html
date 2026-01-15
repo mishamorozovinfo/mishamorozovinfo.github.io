@@ -1165,11 +1165,13 @@ summary:focus-visible {
     }
     
     // Security: Phone validation
-    function isValidPhone(phone) {
-      if (!phone) return true; // Optional field
-      const pattern = /^[\d\s\+\-\(\)]+$/;
-      return pattern.test(phone) && phone.length <= 20;
-    }
+function isValidPhone(phone) {
+  if (!phone || phone.trim() === '') return true; // Optional field
+  // Must contain at least 6 digits
+  const digitsOnly = phone.replace(/[\s\-\(\)\.]/g, '');
+  const pattern = /^\+?\d{6,15}$/;
+  return pattern.test(digitsOnly) && phone.length <= 20;
+}
     
     // Security: Enhanced rate limiting
 const rateLimiter = {
