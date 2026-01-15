@@ -1048,18 +1048,41 @@
       return pattern.test(phone) && phone.length <= 20;
     }
     
-    // Security: Rate limiting for form submissions
-    let lastSubmitTime = 0;
-    const SUBMIT_COOLDOWN = 3000; // 3 seconds
+    // Security: Enhanced rate limiting
+const rateLimiter = {
+  lastSubmitTime: 0,
+  submitCount: 0,
+  cooldownMs: 3000,
+  maxSubmitsPerMinute: 3,
+  
+  canSubmit: function() {
+    const now = Date.now();
     
-    function canSubmitForm() {
-      const now = Date.now();
-      if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
-        return false;
-      }
-      lastSubmitTime = now;
-      return true;
+    // Reset count after 1 minute
+    if (now - this.lastSubmitTime > 60000) {
+      this.submitCount = 0;
     }
+    
+    // Check cooldown between submissions
+    if (now - this.lastSubmitTime < this.cooldownMs) {
+      return false;
+    }
+    
+    // Check max submissions per minute
+    if (this.submitCount >= this.maxSubmitsPerMinute) {
+      return false;
+    }
+    
+    this.lastSubmitTime = now;
+    this.submitCount++;
+    return true;
+  }
+};
+
+// Keep old function name for compatibility
+function canSubmitForm() {
+  return rateLimiter.canSubmit();
+}
 
     // Translation data
     const translations = {
