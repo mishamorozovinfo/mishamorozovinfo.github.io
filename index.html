@@ -1951,17 +1951,35 @@ function canSubmitForm() {
       const navLinks = document.getElementById('navLinks');
       
       if (menuToggle && navLinks) {
-  menuToggle.addEventListener('click', function() {
+  menuToggle.addEventListener('click', function(e) {
+    e.stopPropagation();
     const isOpen = navLinks.classList.toggle('open');
     menuToggle.setAttribute('aria-expanded', isOpen.toString());
   });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+  
+  // Close menu with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.focus();
+    }
+  });
 }
-
       // Close menu when clicking a link
       const links = document.querySelectorAll('.nav-link');
       links.forEach(link => {
         link.addEventListener('click', function() {
           navLinks.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
         });
       });
 
