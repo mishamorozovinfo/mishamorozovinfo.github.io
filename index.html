@@ -2000,9 +2000,9 @@ function throttle(func, limit) {
         });
       });
 
-      // Active link highlighting
+     // Active link highlighting
       const sections = document.querySelectorAll('section[id]');
-      window.addEventListener('scroll', function() {
+      window.addEventListener('scroll', throttle(function() {
         let current = '';
         sections.forEach(section => {
           const sectionTop = section.offsetTop;
@@ -2011,14 +2011,13 @@ function throttle(func, limit) {
             current = section.getAttribute('id');
           }
         });
-
         links.forEach(link => {
           link.classList.remove('active');
           if (link.getAttribute('href') === '#' + current) {
             link.classList.add('active');
           }
         });
-      });
+      }, 100));
 
       // Booking form handler
       const bookingForm = document.getElementById('bookingForm');
