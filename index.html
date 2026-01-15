@@ -396,6 +396,82 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap:1.8rem;
     }
+    
+    /* Who I Help Section */
+    .who-i-help {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    }
+    
+    .who-i-help-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 992px) {
+      .who-i-help-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .who-i-help-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .help-card {
+      background: linear-gradient(135deg, #1a1a1a, #252525);
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.08);
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .help-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    
+    .help-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.15);
+      box-shadow: 0 15px 40px rgba(0,0,0,.5);
+    }
+    
+    .help-card:hover::before {
+      opacity: 1;
+    }
+    
+    .help-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .help-card h3 {
+      color: #ffffff;
+      font-size: 1.2rem;
+      margin: 0 0 .75rem;
+      font-weight: 600;
+    }
+    
+    .help-card p {
+      color: #a0a0a0;
+      font-size: .95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
    
     .service {
       background:#1a1a1a;
@@ -517,36 +593,87 @@
       cursor: not-allowed;
     }
 
+    .faq {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    }
+    
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
     .faq details {
-      background:#1a1a1a;
-      border-radius:16px;
-      margin:1rem 0;
-      padding:0;
-      box-shadow:var(--shadow);
+      background: linear-gradient(135deg, #1a1a1a, #252525);
+      border-radius: 16px;
+      margin: 0;
+      padding: 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,.4);
       overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      transition: all .3s ease;
+    }
+    
+    .faq details:hover {
+      border-color: rgba(255,255,255,.15);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,.5);
     }
    
     .faq summary {
-      cursor:pointer;
-      font-weight:700;
-      color:#ffffff;
-      padding: 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: #ffffff;
+      padding: 1.5rem 3rem 1.5rem 1.5rem;
       transition: all .2s ease;
+      list-style: none;
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.4;
+    }
+    
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    .faq summary::after {
+      content: "+";
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.6);
+      transition: all .3s ease;
+    }
+    
+    .faq details[open] summary::after {
+      content: "−";
+      color: #ffffff;
     }
    
     .faq summary:hover {
-      background: rgba(255,255,255,.05);
+      background: rgba(255,255,255,.03);
     }
    
     .faq details[open] summary {
-      background: rgba(255,255,255,.08);
+      background: rgba(255,255,255,.05);
       border-bottom: 1px solid rgba(255,255,255,.1);
     }
    
     .faq details p {
-      padding: 0 1.5rem 1.5rem;
+      padding: 1.25rem 1.5rem 1.5rem;
       margin: 0;
-      color: #cccccc;
+      color: #b0b0b0;
+      line-height: 1.7;
+      font-size: 1rem;
     }
 
     .status {
@@ -730,17 +857,17 @@
         service9Title: "Migration & Integration Support",
         service9Desc: "Specialized support for immigrants and refugees in Denmark. Help with residency applications, family reunification, integration programs, cultural adaptation, language barriers with authorities, employment assistance, and understanding Danish social systems. Available in Ukrainian, Russian, Danish, and English.",
         whoIHelpTitle: "Who I Help",
-        whoIHelp1Title: "🧠 Mental Health Support",
+        whoIHelp1Title: "Mental Health Support",
         whoIHelp1Desc: "Anxiety, depression, trauma, burnout, relationship issues, phobias, life transitions",
-        whoIHelp2Title: "🏛️ Social Welfare Cases",
+        whoIHelp2Title: "Social Welfare Cases",
         whoIHelp2Desc: "Disability benefits, unemployment support, housing assistance, family support services",
-        whoIHelp3Title: "⚖️ Legal/Administrative",
+        whoIHelp3Title: "Legal/Administrative",
         whoIHelp3Desc: "Family law, child custody, housing disputes, workplace conflicts, appeals, documentation",
-        whoIHelp4Title: "🌍 Migration Support",
+        whoIHelp4Title: "Migration Support",
         whoIHelp4Desc: "Residency applications, family reunification, integration programs, cultural adaptation",
-        whoIHelp5Title: "👨‍👩‍👧‍👦 Family Services",
+        whoIHelp5Title: "Family Services",
         whoIHelp5Desc: "Child welfare cases, parenting support, family reunification, domestic situations",
-        whoIHelp6Title: "📋 Case Management",
+        whoIHelp6Title: "Case Management",
         whoIHelp6Desc: "Coordination with authorities, medical documentation, long-term complex cases",
         faqTitle: "Frequently Asked Questions",
         faq1Q: "What's the difference between therapy and social work services?",
@@ -849,17 +976,17 @@
         service9Title: "Migrations- & Integrationsstøtte",
         service9Desc: "Specialiseret støtte til indvandrere og flygtninge i Danmark. Hjælp med opholdstilladelse, familiesammenføring, integrationsprogrammer, kulturel tilpasning, sprogbarrierer med myndigheder, beskæftigelseshjælp og forståelse af danske sociale systemer. Tilgængelig på ukrainsk, russisk, dansk og engelsk.",
         whoIHelpTitle: "Hvem Jeg Hjælper",
-        whoIHelp1Title: "🧠 Mental Sundhedsstøtte",
+        whoIHelp1Title: "Mental Sundhedsstøtte",
         whoIHelp1Desc: "Angst, depression, traume, udbrændthed, relationsproblemer, fobier, livsovergange",
-        whoIHelp2Title: "🏛️ Sociale Velfærdssager",
+        whoIHelp2Title: "Sociale Velfærdssager",
         whoIHelp2Desc: "Førtidspension, arbejdsløshedsunderstøttelse, boligstøtte, familiestøtteydelser",
-        whoIHelp3Title: "⚖️ Juridisk/Administrativt",
+        whoIHelp3Title: "Juridisk/Administrativt",
         whoIHelp3Desc: "Familieret, forældremyndighed, boligtvister, arbejdsplads konflikter, klager, dokumentation",
-        whoIHelp4Title: "🌍 Migrationsstøtte",
+        whoIHelp4Title: "Migrationsstøtte",
         whoIHelp4Desc: "Opholdstilladelse, familiesammenføring, integrationsprogrammer, kulturel tilpasning",
-        whoIHelp5Title: "👨‍👩‍👧‍👦 Familieydelser",
+        whoIHelp5Title: "Familieydelser",
         whoIHelp5Desc: "Børnevelfærdssager, forældrestøtte, familiesammenføring, hjemmesituationer",
-        whoIHelp6Title: "📋 Sagsbehandling",
+        whoIHelp6Title: "Sagsbehandling",
         whoIHelp6Desc: "Koordinering med myndigheder, medicinsk dokumentation, langsigtede komplekse sager",
         faqTitle: "Ofte Stillede Spørgsmål",
         faq1Q: "Hvad er forskellen mellem terapi og socialrådgivning?",
@@ -968,17 +1095,17 @@
         service9Title: "Підтримка міграції та інтеграції",
         service9Desc: "Спеціалізована підтримка для іммігрантів та біженців у Данії. Допомога із заявками на проживання, возз'єднання сім'ї, інтеграційними програмами, культурною адаптацією, мовними бар'єрами з владою, допомогою з працевлаштуванням та розумінням данських соціальних систем. Доступно українською, російською, данською та англійською мовами.",
         whoIHelpTitle: "Кому я допомагаю",
-        whoIHelp1Title: "🧠 Підтримка психічного здоров'я",
+        whoIHelp1Title: "Підтримка психічного здоров'я",
         whoIHelp1Desc: "Тривога, депресія, травма, вигорання, проблеми у стосунках, фобії, життєві переходи",
-        whoIHelp2Title: "🏛️ Справи соціального забезпечення",
+        whoIHelp2Title: "Справи соціального забезпечення",
         whoIHelp2Desc: "Пенсія по інвалідності, допомога з безробіття, житлова допомога, послуги підтримки сім'ї",
-        whoIHelp3Title: "⚖️ Юридичні/Адміністративні",
+        whoIHelp3Title: "Юридичні/Адміністративні",
         whoIHelp3Desc: "Сімейне право, опіка над дітьми, житлові спори, конфлікти на роботі, апеляції, документація",
-        whoIHelp4Title: "🌍 Підтримка міграції",
+        whoIHelp4Title: "Підтримка міграції",
         whoIHelp4Desc: "Заявки на проживання, возз'єднання сім'ї, інтеграційні програми, культурна адаптація",
-        whoIHelp5Title: "👨‍👩‍👧‍👦 Сімейні послуги",
+        whoIHelp5Title: "Сімейні послуги",
         whoIHelp5Desc: "Справи про добробут дітей, підтримка батьків, возз'єднання сім'ї, домашні ситуації",
-        whoIHelp6Title: "📋 Ведення справ",
+        whoIHelp6Title: "Ведення справ",
         whoIHelp6Desc: "Координація з органами влади, медична документація, довгострокові складні справи",
         faqTitle: "Часті запитання",
         faq1Q: "Яка різниця між терапією та соціальною роботою?",
@@ -1087,17 +1214,17 @@
         service9Title: "Поддержка миграции и интеграции",
         service9Desc: "Специализированная поддержка для иммигрантов и беженцев в Дании. Помощь с заявками на проживание, воссоединение семьи, интеграционными программами, культурной адаптацией, языковыми барьерами с властями, помощью с трудоустройством и пониманием датских социальных систем. Доступно на украинском, русском, датском и английском языках.",
         whoIHelpTitle: "Кому я помогаю",
-        whoIHelp1Title: "🧠 Поддержка психического здоровья",
+        whoIHelp1Title: "Поддержка психического здоровья",
         whoIHelp1Desc: "Тревога, депрессия, травма, выгорание, проблемы в отношениях, фобии, жизненные переходы",
-        whoIHelp2Title: "🏛️ Дела социального обеспечения",
+        whoIHelp2Title: "Дела социального обеспечения",
         whoIHelp2Desc: "Пенсия по инвалидности, помощь по безработице, жилищная помощь, услуги поддержки семьи",
-        whoIHelp3Title: "⚖️ Юридические/Административные",
+        whoIHelp3Title: "Юридические/Административные",
         whoIHelp3Desc: "Семейное право, опека над детьми, жилищные споры, конфликты на работе, апелляции, документация",
-        whoIHelp4Title: "🌍 Поддержка миграции",
+        whoIHelp4Title: "Поддержка миграции",
         whoIHelp4Desc: "Заявки на проживание, воссоединение семьи, интеграционные программы, культурная адаптация",
-        whoIHelp5Title: "👨‍👩‍👧‍👦 Семейные услуги",
+        whoIHelp5Title: "Семейные услуги",
         whoIHelp5Desc: "Дела о благополучии детей, поддержка родителей, воссоединение семьи, домашние ситуации",
-        whoIHelp6Title: "📋 Ведение дел",
+        whoIHelp6Title: "Ведение дел",
         whoIHelp6Desc: "Координация с органами власти, медицинская документация, долгосрочные сложные дела",
         faqTitle: "Часто задаваемые вопросы",
         faq1Q: "В чем разница между терапией и социальной работой?",
@@ -1254,20 +1381,20 @@
       
       // Who I Help section
       updateElement('#who-i-help .section-title', t.whoIHelpTitle);
-      const whoIHelp = document.querySelectorAll('#who-i-help .card');
-      if (whoIHelp.length >= 6) {
-        whoIHelp[0].querySelector('h3').textContent = t.whoIHelp1Title;
-        whoIHelp[0].querySelector('p').textContent = t.whoIHelp1Desc;
-        whoIHelp[1].querySelector('h3').textContent = t.whoIHelp2Title;
-        whoIHelp[1].querySelector('p').textContent = t.whoIHelp2Desc;
-        whoIHelp[2].querySelector('h3').textContent = t.whoIHelp3Title;
-        whoIHelp[2].querySelector('p').textContent = t.whoIHelp3Desc;
-        whoIHelp[3].querySelector('h3').textContent = t.whoIHelp4Title;
-        whoIHelp[3].querySelector('p').textContent = t.whoIHelp4Desc;
-        whoIHelp[4].querySelector('h3').textContent = t.whoIHelp5Title;
-        whoIHelp[4].querySelector('p').textContent = t.whoIHelp5Desc;
-        whoIHelp[5].querySelector('h3').textContent = t.whoIHelp6Title;
-        whoIHelp[5].querySelector('p').textContent = t.whoIHelp6Desc;
+      const helpCards = document.querySelectorAll('#who-i-help .help-card');
+      if (helpCards.length >= 6) {
+        helpCards[0].querySelector('h3').textContent = t.whoIHelp1Title;
+        helpCards[0].querySelector('p').textContent = t.whoIHelp1Desc;
+        helpCards[1].querySelector('h3').textContent = t.whoIHelp2Title;
+        helpCards[1].querySelector('p').textContent = t.whoIHelp2Desc;
+        helpCards[2].querySelector('h3').textContent = t.whoIHelp3Title;
+        helpCards[2].querySelector('p').textContent = t.whoIHelp3Desc;
+        helpCards[3].querySelector('h3').textContent = t.whoIHelp4Title;
+        helpCards[3].querySelector('p').textContent = t.whoIHelp4Desc;
+        helpCards[4].querySelector('h3').textContent = t.whoIHelp5Title;
+        helpCards[4].querySelector('p').textContent = t.whoIHelp5Desc;
+        helpCards[5].querySelector('h3').textContent = t.whoIHelp6Title;
+        helpCards[5].querySelector('p').textContent = t.whoIHelp6Desc;
       }
       
       // FAQ section
@@ -1652,32 +1779,38 @@
       </div>
     </section>
 
-    <section id="who-i-help" class="about">
+    <section id="who-i-help" class="who-i-help">
       <div class="container">
         <h2 class="section-title">Who I Help</h2>
-        <div class="services-grid">
-          <div class="card">
-            <h3>🧠 Mental Health Support</h3>
+        <div class="who-i-help-grid">
+          <div class="help-card">
+            <span class="icon">🧠</span>
+            <h3>Mental Health Support</h3>
             <p>Anxiety, depression, trauma, burnout, relationship issues, phobias, life transitions</p>
           </div>
-          <div class="card">
-            <h3>🏛️ Social Welfare Cases</h3>
+          <div class="help-card">
+            <span class="icon">🏛️</span>
+            <h3>Social Welfare Cases</h3>
             <p>Disability benefits, unemployment support, housing assistance, family support services</p>
           </div>
-          <div class="card">
-            <h3>⚖️ Legal/Administrative</h3>
+          <div class="help-card">
+            <span class="icon">⚖️</span>
+            <h3>Legal/Administrative</h3>
             <p>Family law, child custody, housing disputes, workplace conflicts, appeals, documentation</p>
           </div>
-          <div class="card">
-            <h3>🌍 Migration Support</h3>
+          <div class="help-card">
+            <span class="icon">🌍</span>
+            <h3>Migration Support</h3>
             <p>Residency applications, family reunification, integration programs, cultural adaptation</p>
           </div>
-          <div class="card">
-            <h3>👨‍👩‍👧‍👦 Family Services</h3>
+          <div class="help-card">
+            <span class="icon">👨‍👩‍👧‍👦</span>
+            <h3>Family Services</h3>
             <p>Child welfare cases, parenting support, family reunification, domestic situations</p>
           </div>
-          <div class="card">
-            <h3>📋 Case Management</h3>
+          <div class="help-card">
+            <span class="icon">📋</span>
+            <h3>Case Management</h3>
             <p>Coordination with authorities, medical documentation, long-term complex cases</p>
           </div>
         </div>
@@ -1758,53 +1891,60 @@
       </div>
     </section>
 
-    <section id="faq" class="faq about">
+    <section id="faq" class="faq">
       <div class="container">
         <h2 class="section-title">Frequently Asked Questions</h2>
         
-        <details>
-          <summary>What's the difference between therapy and social work services?</summary>
-          <p>Therapy focuses on mental health, emotional wellbeing, and personal growth using NLP techniques. Social work services help with practical life matters: navigating government systems, benefit applications, legal documentation, case management, and advocacy with authorities.</p>
-        </details>
+        <div class="faq-grid">
+          <details>
+            <summary>What's the difference between therapy and social work services?</summary>
+            <p>Therapy focuses on mental health, emotional wellbeing, and personal growth using NLP techniques. Social work services help with practical life matters: navigating government systems, benefit applications, legal documentation, case management, and advocacy with authorities.</p>
+          </details>
 
-        <details>
-          <summary>Can you help with legal matters or replace a lawyer?</summary>
-          <p>I provide case management and administrative support, including documentation preparation and coordination with lawyers. However, I am not a lawyer and cannot provide legal advice. For legal matters, I work alongside your legal representation to ensure comprehensive support.</p>
-        </details>
+          <details>
+            <summary>Can you help with legal matters or replace a lawyer?</summary>
+            <p>I provide case management and administrative support, including documentation preparation and coordination with lawyers. However, I am not a lawyer and cannot provide legal advice. For legal matters, I work alongside your legal representation to ensure comprehensive support.</p>
+          </details>
 
-        <details>
-          <summary>What types of social welfare benefits can you help with?</summary>
-          <p>I assist with disability benefits (førtidspension), unemployment benefits (dagpenge), housing support (boligstøtte), family benefits, integration support, and other social welfare services available in Denmark. I help with applications, appeals, and communication with authorities.</p>
-        </details>
+          <details>
+            <summary>What types of social welfare benefits can you help with?</summary>
+            <p>I assist with disability benefits (førtidspension), unemployment benefits (dagpenge), housing support (boligstøtte), family benefits, integration support, and other social welfare services available in Denmark. I help with applications, appeals, and communication with authorities.</p>
+          </details>
 
-        <details>
-          <summary>Do you work with Danish authorities and government agencies?</summary>
-          <p>Yes. As a licensed Danish social worker, I regularly coordinate with communes, job centers, housing services, family services, and other government agencies on behalf of my clients. I can attend meetings, prepare documentation, and advocate for your needs.</p>
-        </details>
+          <details>
+            <summary>Do you work with Danish authorities and government agencies?</summary>
+            <p>Yes. As a licensed Danish social worker, I regularly coordinate with communes, job centers, housing services, family services, and other government agencies on behalf of my clients. I can attend meetings, prepare documentation, and advocate for your needs.</p>
+          </details>
 
-        <details>
-          <summary>Can you help with immigration and residency matters?</summary>
-          <p>Yes. I provide support with residency applications, family reunification cases, integration programs, and navigating immigration services. My multilingual skills (Ukrainian, Russian, Danish, English) are particularly helpful for recent immigrants.</p>
-        </details>
+          <details>
+            <summary>Can you help with immigration and residency matters?</summary>
+            <p>Yes. I provide support with residency applications, family reunification cases, integration programs, and navigating immigration services. My multilingual skills (Ukrainian, Russian, Danish, English) are particularly helpful for recent immigrants.</p>
+          </details>
 
-        <details>
-          <summary>How do the case management packages work?</summary>
-          <p>Case management packages provide ongoing support for complex situations. This includes regular meetings, documentation preparation, coordination with authorities, advocacy, and long-term planning. The hours can be used flexibly based on your case needs.</p>
-        </details>
+          <details>
+            <summary>How do the case management packages work?</summary>
+            <p>Case management packages provide ongoing support for complex situations. This includes regular meetings, documentation preparation, coordination with authorities, advocacy, and long-term planning. The hours can be used flexibly based on your case needs.</p>
+          </details>
 
-        <details>
-          <summary>What languages do you speak for legal/administrative support?</summary>
-          <p>I provide services in Danish, Ukrainian, Russian, and in some cases English. This is especially important when dealing with authorities, as I can help translate and ensure you fully understand your rights and obligations.</p>
-        </details>
+          <details>
+            <summary>What languages do you speak for legal/administrative support?</summary>
+            <p>I provide services in Danish, Ukrainian, Russian, and in some cases English. This is especially important when dealing with authorities, as I can help translate and ensure you fully understand your rights and obligations.</p>
+          </details>
 
-        <details>
-          <summary>Can I book both therapy and social work services?</summary>
-          <p>Absolutely! Many clients benefit from combined support - addressing both mental health needs and practical life challenges. We can create an integrated plan that supports your wellbeing holistically.</p>
-        </details>
+          <details>
+            <summary>Can I book both therapy and social work services?</summary>
+            <p>Absolutely! Many clients benefit from combined support - addressing both mental health needs and practical life challenges. We can create an integrated plan that supports your wellbeing holistically.</p>
+          </details>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2026 Misha Morozov. All rights reserv
+      <p>© 2026 Misha Morozov. All rights reserved.</p>
+      <p>This website does not provide emergency mental health services.</p>
+    </div>
+  </footer>
+</body>
+</html>
