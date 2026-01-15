@@ -1926,10 +1926,10 @@ function canSubmitForm() {
         status.className = 'status error';
         status.textContent = t.statusError;
       } finally {
-        // Re-enable button
-        submitBtn.disabled = false;
-        submitBtn.textContent = t.submitBtn;
-      }
+     // Re-enable button
+     submitBtn.disabled = false;
+     submitBtn.innerHTML = t.submitBtn;
+    }
     }
   </script>
   <a class="skip-link" href="#main">Skip to content</a>
