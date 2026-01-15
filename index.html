@@ -216,14 +216,19 @@ summary:focus-visible {
     }
    
     .lang-select {
-      padding:.5rem .7rem;
-      border-radius:.5rem;
-      border:1px solid #555;
-      background:#1a1a1a;
-      font:inherit;
-      color:#ffffff;
-      cursor: pointer;
-    }
+  padding:.5rem .7rem;
+  border-radius:.5rem;
+  border:1px solid #555;
+  background:#1a1a1a;
+  font:inherit;
+  color:#ffffff;
+  cursor: pointer;
+  transition: border-color .2s ease;
+}
+
+.lang-select:hover {
+  border-color: #888;
+}
 
     .hero {
       background:linear-gradient(135deg, rgba(0,0,0,.98), rgba(10,10,10,.95)),
