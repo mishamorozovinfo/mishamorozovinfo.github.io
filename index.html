@@ -1557,15 +1557,24 @@
       }
     });
 
-    async function handleBooking(e) {
-      e.preventDefault();
+     async function handleBooking(e) {
+     e.preventDefault();
+  
+  const t = translations[currentLang];
+  const status = document.getElementById('bookingStatus');
+  
+  // Honeypot check - if filled, it's a bot
+  const honeypot = document.getElementById('website');
+  if (honeypot && honeypot.value) {
+    status.className = 'status error';
+    status.textContent = t.statusError;
+    return;
+  }    
       
-      const t = translations[currentLang];
       const email = document.getElementById('bk_email').value.trim();
       const phone = document.getElementById('bk_phone').value.trim();
       const name = document.getElementById('bk_name').value.trim();
       const message = document.getElementById('bk_message').value.trim();
-      const status = document.getElementById('bookingStatus');
       const submitBtn = document.getElementById('bookingBtn');
       
       // Security: Rate limiting
