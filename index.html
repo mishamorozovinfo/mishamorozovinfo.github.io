@@ -2090,6 +2090,12 @@ function canSubmitForm() {
           
           // Clear form
           e.target.reset();
+          
+          // Auto-hide success message after 10 seconds
+          setTimeout(function() {
+            status.className = '';
+            status.textContent = '';
+          }, 10000);
         } else {
           throw new Error('Form submission failed');
         }
