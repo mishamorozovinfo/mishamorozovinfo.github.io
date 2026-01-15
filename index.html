@@ -1906,6 +1906,9 @@ function canSubmitForm() {
   } catch (e) {
     // localStorage might not be available
   }
+  
+  // Update HTML lang attribute
+  document.documentElement.lang = lang;
 }
 
     // Mobile menu toggle
