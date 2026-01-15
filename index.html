@@ -1884,7 +1884,7 @@ function canSubmitForm() {
 
       // Disable button and show loading
       submitBtn.disabled = true;
-      submitBtn.textContent = t.btnSending;
+      submitBtn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">⟳</span> ' + t.btnSending;
       status.className = '';
       status.textContent = '';
 
