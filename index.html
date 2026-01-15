@@ -1745,18 +1745,19 @@ function canSubmitForm() {
         sessionInfo[3].textContent = t.sessionLanguages;
         sessionInfo[4].textContent = t.sessionPayment;
       }
-      
+
       // Contact section
-      updateElement('#contact .section-title', t.contactTitle);
-      const contactInfo = document.querySelectorAll('.info-list p');
-      if (contactInfo.length >= 6) {
-        contactInfo[0].innerHTML = `<strong>${sanitizeInput(t.contactEmail)}</strong> info.mishamorozov@gmail.com`;
-        contactInfo[1].innerHTML = `<strong>${sanitizeInput(t.contactPhone)}</strong> +45 50 30 03 60`;
-        contactInfo[2].innerHTML = `<strong>${sanitizeInput(t.contactWhatsApp)}</strong> +45 50 30 03 60`;
-        contactInfo[3].innerHTML = `<strong>${sanitizeInput(t.contactViber)}</strong> +45 50 30 03 60`;
-        contactInfo[4].innerHTML = `<strong>${sanitizeInput(t.contactLocation)}</strong> ${sanitizeInput(t.contactLocationValue)}`;
-        contactInfo[5].innerHTML = `<strong>${sanitizeInput(t.contactHours)}</strong> ${sanitizeInput(t.contactHoursValue)}`;
-      }
+  updateElement('#contact .section-title', t.contactTitle);
+  const contactInfo = document.querySelectorAll('.info-list p');
+  if (contactInfo.length >= 6) {
+  contactInfo[0].innerHTML = `<strong>${sanitizeInput(t.contactEmail)}</strong> <a href="mailto:info.mishamorozov@gmail.com">info.mishamorozov@gmail.com</a>`;
+  contactInfo[1].innerHTML = `<strong>${sanitizeInput(t.contactPhone)}</strong> <a href="tel:+4550300360">+45 50 30 03 60</a>`;
+  contactInfo[2].innerHTML = `<strong>${sanitizeInput(t.contactWhatsApp)}</strong> <a href="https://wa.me/4550300360">+45 50 30 03 60</a>`;
+  contactInfo[3].innerHTML = `<strong>${sanitizeInput(t.contactViber)}</strong> <a href="viber://chat?number=+4550300360">+45 50 30 03 60</a>`;
+  contactInfo[4].innerHTML = `<strong>${sanitizeInput(t.contactLocation)}</strong> ${sanitizeInput(t.contactLocationValue)}`;
+  contactInfo[5].innerHTML = `<strong>${sanitizeInput(t.contactHours)}</strong> ${sanitizeInput(t.contactHoursValue)}`;
+ }
+      
       
       updateElement('.contact-grid > div:last-child > p', t.contactText);
       
