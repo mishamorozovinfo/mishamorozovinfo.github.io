@@ -2039,7 +2039,7 @@ function canSubmitForm() {
 
       // Disable button and show loading
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;">⟳</span> ' + t.btnSending;
+      document.getElementById('bookingBtnText').innerHTML = '<span class="spinner"></span>' + t.btnSending;
       status.className = '';
       status.textContent = '';
 
