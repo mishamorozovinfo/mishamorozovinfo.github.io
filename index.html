@@ -1160,9 +1160,10 @@ summary:focus-visible {
     
     // Security: Email validation with strict pattern
     function isValidEmail(email) {
-      const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      return pattern.test(email) && email.length <= 254;
-    }
+  if (!email || typeof email !== 'string') return false;
+  const pattern = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+  return pattern.test(email) && email.length <= 254 && email.length >= 5;
+}
     
     // Security: Phone validation
 function isValidPhone(phone) {
