@@ -1194,6 +1194,16 @@ function isValidEmail(email) {
   const firstPart = domain.split('.')[0];
   if (firstPart.length < 2) return false;
   
+  // Block common typos and fake domains
+  const blockedDomains = [
+    'ggmail.com', 'gmial.com', 'gmal.com', 'gmaill.com', 'gmali.com',
+    'hotmal.com', 'hotmial.com', 'hotmaill.com',
+    'yaho.com', 'yahho.com', 'yahooo.com',
+    'outlok.com', 'outloo.com', 'outlookk.com'
+  ];
+  
+  if (blockedDomains.includes(domain)) return false;
+  
   return true;
 }
     
