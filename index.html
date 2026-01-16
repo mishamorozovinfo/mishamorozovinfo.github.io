@@ -1180,17 +1180,19 @@ summary:focus-visible {
     // Security: Email validation with strict pattern
     function isValidEmail(email) {
   if (!email || typeof email !== 'string') return false;
-  const pattern = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
-  return pattern.test(email) && email.length <= 254 && email.length >= 5;
+  email = email.trim();
+  // Simple but effective validation
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return pattern.test(email) && email.length >= 5 && email.length <= 254;
 }
     
     // Security: Phone validation
 function isValidPhone(phone) {
   if (!phone || phone.trim() === '') return true; // Optional field
-  // Must contain at least 6 digits
-  const digitsOnly = phone.replace(/[\s\-\(\)\.]/g, '');
-  const pattern = /^\+?\d{6,15}$/;
-  return pattern.test(digitsOnly) && phone.length <= 20;
+  // Remove all non-digit characters except +
+  const cleaned = phone.replace(/[^\d+]/g, '');
+  // Must have 6-15 digits, optionally starting with +
+  return /^\+?\d{6,15}$/.test(cleaned);
 }
     
     // Security: Enhanced rate limiting
