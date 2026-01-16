@@ -2026,6 +2026,13 @@ function throttle(func, limit) {
   const submitBtn = document.getElementById('bookingBtn');
   const btnText = document.getElementById('bookingBtnText');
   
+  // ADD THIS SAFETY CHECK - this prevents the error
+  if (!status || !submitBtn || !btnText) {
+    console.error('Form elements not found');
+    alert('Form error. Please refresh the page and try again.');
+    return;
+  }
+  
   // Honeypot check - if filled, it's a bot
   const honeypot = document.getElementById('website');
   if (honeypot && honeypot.value) {
@@ -2077,7 +2084,7 @@ function throttle(func, limit) {
   // Your Web3Forms access key
   const accessKey = '19d28277-edf3-4e9d-a74e-3ece5cecc345';
   
-  // BUILD FORMDATA MANUALLY (this is the fix!)
+  // BUILD FORMDATA MANUALLY
   const formData = new FormData();
   formData.append('access_key', accessKey);
   formData.append('subject', 'New Appointment Request from Website');
