@@ -1195,23 +1195,9 @@ function isValidPhone(phone) {
   return /^\+?\d{6,15}$/.test(cleaned);
 }
     
-    // Security: Enhanced rate limiting
-const rateLimiter = {
-  lastSubmitTime: 0,
-  submitCount: 0,
-  cooldownMs: 3000,
-  maxSubmitsPerMinute: 3,
-  
-  canSubmit: function() {
-    const now = Date.now();
-    
-    // Reset count after 1 minute
-    if (now - this.lastSubmitTime > 60000) {
-      this.submitCount = 0;
-    }
     
     // Check cooldown between submissions
-    if (now - this.lastSubmitTime < this.cooldownMs) {
+    if (this.lastSubmitTime > 0 && now - this.lastSubmitTime < this.cooldownMs) {
       return false;
     }
     
@@ -1230,6 +1216,7 @@ const rateLimiter = {
 function canSubmitForm() {
   return rateLimiter.canSubmit();
 }
+
 function throttle(func, limit) {
   let inThrottle;
   return function() {
