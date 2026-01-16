@@ -1194,7 +1194,23 @@ function isValidPhone(phone) {
   // Must have 6-15 digits, optionally starting with +
   return /^\+?\d{6,15}$/.test(cleaned);
 }
+
+// Security: Enhanced rate limiting
+const rateLimiter = {
+  lastSubmitTime: 0,
+  submitCount: 0,
+  windowStart: 0,
+  cooldownMs: 3000,
+  maxSubmitsPerMinute: 5,
+  
+  canSubmit: function() {
+    const now = Date.now();
     
+    // Reset the window after 60 seconds from first submission
+    if (this.windowStart === 0 || now - this.windowStart > 60000) {
+      this.windowStart = now;
+      this.submitCount = 0;
+    }
     
     // Check cooldown between submissions
     if (this.lastSubmitTime > 0 && now - this.lastSubmitTime < this.cooldownMs) {
