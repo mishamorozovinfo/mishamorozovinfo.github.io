@@ -1178,10 +1178,23 @@ summary:focus-visible {
     }
     
     // Security: Email validation with strict pattern
-    function isValidEmail(email) {
+function isValidEmail(email) {
   if (!email || typeof email !== 'string') return false;
+  email = email.trim().toLowerCase();
+  
+  // Check length
+  if (email.length < 6 || email.length > 254) return false;
+  
+  // Basic pattern check
   const pattern = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
-  return pattern.test(email) && email.length <= 254 && email.length >= 5;
+  if (!pattern.test(email)) return false;
+  
+  // Check first part of domain is at least 2 characters
+  const domain = email.split('@')[1];
+  const firstPart = domain.split('.')[0];
+  if (firstPart.length < 2) return false;
+  
+  return true;
 }
     
     // Security: Phone validation
