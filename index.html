@@ -124,8 +124,9 @@ summary:focus-visible {
     }
 
     header {
-      background:rgba(0,0,0,.95);
-      backdrop-filter:blur(12px);
+  background:rgba(0,0,0,.95);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
       box-shadow:0 2px 20px rgba(0,0,0,.5);
       position:sticky;
       top:0;
@@ -312,17 +313,18 @@ summary:focus-visible {
     }
 
     .trust-indicators {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem 2rem;
-      margin-top: 3rem;
-      padding: 1.5rem 1rem;
-      background: rgba(255,255,255,.1);
-      border-radius: 16px;
-      backdrop-filter: blur(8px);
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-top: 3rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255,255,255,.1);
+  border-radius: 16px;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
    
     .trust-item {
       display: flex;
@@ -566,12 +568,13 @@ summary:focus-visible {
     }
    
     .glass {
-      background:var(--glass);
-      padding:2rem;
-      border-radius:20px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.1);
-    }
+  background:var(--glass);
+  padding:2rem;
+  border-radius:20px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.1);
+}
    
     .glass h3 {
       margin:0 0 1rem;
@@ -2280,7 +2283,7 @@ function throttle(func, limit) {
           </div>
           <div>
             <div class="portrait-container">
-              <img src="misha-photo.jpg" alt="Misha Morozov - Professional Photo" class="portrait-img" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+              <img src="misha-photo.jpg" alt="Misha Morozov - Professional Photo" class="portrait-img" loading="lazy" width="468" height="618" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
               <div class="portrait-fallback" style="display:none;">
                 Professional Photo<br>
                 <small style="opacity:.7">Misha Morozov</small>
@@ -2459,28 +2462,28 @@ function throttle(func, limit) {
     <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
   <div class="container">
     <h2 class="section-title" id="testimonials-title">What Clients Say</h2>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <div class="testimonial-text">
-              <p>"Misha hjalp mig med at navigere i det danske velfærdssystem, da jeg følte mig fuldstændig fortabt. Hans tålmodighed og flersprogede støtte gjorde en svær proces overskuelig."</p>
-            </div>
-            <div class="testimonial-author">
-              <span class="author-name">— Olena K.</span>
-              <span class="author-detail">Migrations- og integrationsstøtte</span>
-            </div>
-          </div>
-          <div class="testimonial">
-            <div class="testimonial-text">
-              <p>"После нескольких сессий с Мишей я наконец почувствовала, что могу справиться со своей тревогой. Его подход с НЛП действительно работает."</p>
-            </div>
-            <div class="testimonial-author">
-              <span class="author-name">— Анна М.</span>
-              <span class="author-detail">Терапия тревожности</span>
-            </div>
-          </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-text">
+          <p lang="uk">"Міша допоміг мені орієнтуватися в данській системі соціального забезпечення, коли я почувалася повністю загубленою. Його терпіння та багатомовна підтримка зробили складний процес керованим."</p>
+        </div>
+        <div class="testimonial-author">
+          <span class="author-name">— Олена К.</span>
+          <span class="author-detail" lang="uk">Підтримка міграції та інтеграції</span>
         </div>
       </div>
-    </section>
+      <div class="testimonial">
+        <div class="testimonial-text">
+          <p lang="ru">"После нескольких сессий с Мишей я наконец почувствовала, что могу справиться со своей тревогой. Его подход с НЛП действительно работает."</p>
+        </div>
+        <div class="testimonial-author">
+          <span class="author-name">— Анна М.</span>
+          <span class="author-detail" lang="ru">Терапия тревожности</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section id="faq" class="faq" aria-labelledby="faq-title">
   <div class="container">
