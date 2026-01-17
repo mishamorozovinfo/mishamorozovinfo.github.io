@@ -7,6 +7,29 @@
   <meta name="description" content="Social Worker with Advanced NLP therapy knowledge for lasting transformation. Online and in‑person sessions." />
   <link rel="canonical" href="https://mishamorozov.com/">
 
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mishamorozov.com/">
+  <meta property="og:title" content="Misha Morozov — Socialrådgiver & NLP Psykoterapeut">
+  <meta property="og:description" content="Erfaren socialrådgiver med avancerede NLP terapifærdigheder. Specialiseret i angst, depression, trauma og social velfærd. Online og personlige sessioner i Holstebro, Danmark.">
+  <meta property="og:image" content="https://mishamorozov.com/misha-photo.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Misha Morozov - Socialrådgiver og NLP Psykoterapeut i Holstebro">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="uk_UA">
+  <meta property="og:locale:alternate" content="ru_RU">
+  <meta property="og:site_name" content="Misha Morozov">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://mishamorozov.com/">
+  <meta name="twitter:title" content="Misha Morozov — Socialrådgiver & NLP Psykoterapeut">
+  <meta name="twitter:description" content="Erfaren socialrådgiver med avancerede NLP terapifærdigheder. Online og personlige sessioner i Holstebro.">
+  <meta name="twitter:image" content="https://mishamorozov.com/misha-photo.jpg">
+  <meta name="twitter:image:alt" content="Misha Morozov - Socialrådgiver og NLP Psykoterapeut">
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23000' width='100' height='100' rx='20'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='Georgia'>MM</text></svg>">
   
@@ -18,13 +41,14 @@
   <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
   
   <!-- Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="
+ <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' 'unsafe-inline' https://api.web3forms.com;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
+    img-src 'self' data: https://*.googleapis.com https://*.gstatic.com;
     font-src 'self';
     connect-src 'self' https://api.web3forms.com;
+    frame-src 'self' https://www.google.com https://maps.google.com;
     frame-ancestors 'self';
     base-uri 'self';
     form-action 'self' https://api.web3forms.com;
@@ -1233,27 +1257,59 @@ function isValidEmail(email) {
   if (!email || typeof email !== 'string') return false;
   email = email.trim().toLowerCase();
   
-  // Check length
   if (email.length < 6 || email.length > 254) return false;
   
-  // Basic pattern check
-  const pattern = /^[a-zA-Z0-9](?:[a-zA-Z0-9._%+-]{0,62}[a-zA-Z0-9])?@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,})+$/;
+  const atCount = (email.match(/@/g) || []).length;
+  if (atCount !== 1) return false;
+  
+  const basicPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!basicPattern.test(email)) return false;
+  
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!pattern.test(email)) return false;
   
-  // Check first part of domain is at least 2 characters
-  const domain = email.split('@')[1];
-  const firstPart = domain.split('.')[0];
-  if (firstPart.length < 2) return false;
+  const [localPart, domain] = email.split('@');
+  const domainParts = domain.split('.');
+  const tld = domainParts[domainParts.length - 1];
+  const domainName = domainParts[0];
   
-  // Block common typos and fake domains
-  const blockedDomains = [
-    'ggmail.com', 'gmial.com', 'gmal.com', 'gmaill.com', 'gmali.com',
-    'hotmal.com', 'hotmial.com', 'hotmaill.com',
-    'yaho.com', 'yahho.com', 'yahooo.com',
-    'outlok.com', 'outloo.com', 'outlookk.com'
+  if (tld.length < 2 || tld.length > 10) return false;
+  if (domainName.length < 1) return false;
+  
+  const invalidTLDs = ['test', 'example', 'invalid', 'localhost'];
+  if (invalidTLDs.includes(tld)) return false;
+  
+  const disposableDomains = [
+    'mailinator.com', 'guerrillamail.com', 'sharklasers.com', 'grr.la',
+    'tempmail.com', 'throwaway.com', '10minutemail.com', 'trashmail.com',
+    'fakeinbox.com', 'getnada.com', 'temp-mail.org', 'dispostable.com'
   ];
+  if (disposableDomains.includes(domain)) return false;
   
-  if (blockedDomains.includes(domain)) return false;
+  let spamScore = 0;
+  
+  if (/^(.{2})\1+$/.test(domainName)) spamScore += 4;
+  if (/^(.{3})\1+$/.test(domainName)) spamScore += 4;
+  if (/^(.{4})\1+$/.test(domainName)) spamScore += 4;
+  if (/^(.)\1+$/.test(domainName)) spamScore += 5;
+  
+  const hasVowel = /[aeiouy]/i.test(domainName);
+  if (!hasVowel && domainName.length > 5) spamScore += 3;
+  
+  const localHasVowel = /[aeiouy]/i.test(localPart);
+  if (!hasVowel && !localHasVowel) spamScore += 2;
+  
+  if (domainName === localPart) spamScore += 3;
+  
+  const spamWords = ['test', 'fake', 'spam', 'asdf', 'qwer', 'temp', 'junk'];
+  for (const word of spamWords) {
+    if (domainName === word || domainName.startsWith(word + word)) spamScore += 2;
+  }
+  
+  const simpleLocalParts = ['test', 'user', 'mail', 'email', 'a', 'x', 'xx', 'xxx'];
+  if (simpleLocalParts.includes(localPart) && !hasVowel) spamScore += 1;
+  
+  if (spamScore >= 4) return false;
   
   return true;
 }
@@ -1337,7 +1393,7 @@ function throttle(func, limit) {
         credentialsTitle: "Professional Credentials",
         credential1: "Accredited Danish Social Worker",
         credential2: "Psychotherapist training in NLP (Neuro-Linguistic Programming) Practitioner & Master",
-        credential3: "Education degree from one of the world's most leading programs",
+        credential3: "Education degree from one of the world's leading programs",
         portraitAlt: "Professional Photo",
         servicesTitle: "My Services",
         service1Title: "Individual Therapy with NLP",
@@ -1377,7 +1433,7 @@ function throttle(func, limit) {
         faq2Q: "Can you help with legal matters?",
         faq2A: "I provide case management and administrative support, including documentation preparation, coordination and consultation.",
         faq3Q: "What types of social welfare benefits can you help with?",
-        faq3A: "I can truely support you in all kind of cases like: disability benefits in early retirement, unemployment benefits , housing support, family benefits, integration support, and other social welfare services available in Denmark. I help with applications, appeals, and communication with authorities.",
+        faq3A: "I can truly support you in all kinds of cases like: disability benefits in early retirement, unemployment benefits , housing support, family benefits, integration support, and other social welfare services available in Denmark. I help with applications, appeals, and communication with authorities.",
         faq4Q: "Do you work with Danish authorities and government agencies?",
         faq4A: "Yes. As an accredited Danish social worker, I regularly coordinate with communes, job centers, housing services, family services, and other government agencies on behalf of my clients. I can attend meetings, prepare documentation, and advocate for your needs.",
         faq5Q: "Can you help with immigration and residency matters?",
@@ -2277,13 +2333,13 @@ function throttle(func, limit) {
               <ul>
                 <li>Accredited Danish Social Worker</li>
                 <li>Psychotherapist training in NLP (Neuro-Linguistic Programming) Practitioner & Master</li>
-                <li>Education degree from one of the world's most leading programs</li>
+                <li>Education degree from one of the world's leading programs</li>
               </ul>
             </div>
           </div>
           <div>
             <div class="portrait-container">
-              <img src="misha-photo.jpg" alt="Misha Morozov - Professional Photo" class="portrait-img" loading="lazy" width="468" height="618" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+              <img src="misha-photo.jpg" alt="Misha Morozov - Professional Photo" class="portrait-img" loading="lazy" width="468" height="618" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='grid';">
               <div class="portrait-fallback" style="display:none;">
                 Professional Photo<br>
                 <small style="opacity:.7">Misha Morozov</small>
@@ -2376,22 +2432,59 @@ function throttle(func, limit) {
       </div>
     </section>
 
+
     <section id="booking" class="booking" aria-labelledby="booking-title">
   <div class="container">
     <h2 class="section-title" id="booking-title">Book an Appointment</h2>
+
+<!-- WhatsApp Quick Book Buttons -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+  
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/4550300360?text=Hi%20Misha!%20I%20would%20like%20to%20book%20a%20consultation."
+     target="_blank"
+     rel="noopener noreferrer"
+     style="display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; background: #25D366; color: white; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; font-size: 1.1rem; text-decoration: none; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); transition: all 0.3s ease; min-width: 350px;"
+     onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(37, 211, 102, 0.5)';"
+     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(37, 211, 102, 0.4)';">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Book via WhatsApp
+  </a>
+  
+  <!-- Viber Button -->
+  <a href="viber://chat?number=+4550300360"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; background: #7360F2; color: white; padding: 1rem 2rem; border-radius: 999px; font-weight: 700; font-size: 1.1rem; text-decoration: none; box-shadow: 0 8px 25px rgba(115, 96, 242, 0.4); transition: all 0.3s ease; min-width: 350px;"
+     onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(115, 96, 242, 0.5)';"
+     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(115, 96, 242, 0.4)';">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.536 6.769.456 9.967c-.08 3.197-.181 9.193 5.606 10.772v2.468s-.037.998.621 1.203c.795.248 1.26-.51 2.018-1.327.417-.45.99-1.112 1.423-1.615 3.915.33 6.93-.423 7.274-.534.792-.255 5.271-.832 6-6.818.753-6.181-.356-10.091-2.32-11.871-.57-.527-2.87-2.155-7.679-2.245zm.106 1.8c4.15.05 6.088 1.313 6.538 1.725 1.604 1.449 2.476 4.88 1.843 10.076-.592 4.89-4.034 5.293-4.688 5.502-.282.09-2.857.727-6.16.531 0 0-2.439 2.941-3.2 3.706-.12.122-.26.166-.352.144-.13-.03-.166-.18-.165-.397l.02-4.019c-4.762-1.32-4.485-6.292-4.421-8.99.064-2.698.69-4.877 2.13-6.3 1.856-1.809 5.29-2.022 8.455-1.978zm-.028 3.028a.858.858 0 00-.856.86.858.858 0 00.856.857.859.859 0 00.857-.858.858.858 0 00-.857-.859zm3.428.009c-.36-.007-.727.13-1.013.413-.334.33-.504.793-.468 1.27.037.498.282.956.674 1.26.192.15.932.63 1.018.696.32.244.636.49.903.784.236.262.33.621.252.96-.08.356-.339.652-.696.794-.451.18-.961.106-1.348-.195a8.167 8.167 0 01-.611-.535l-.069-.064c-.648-.598-1.152-1.063-1.573-1.803-.34-.598-.476-1.213-.376-1.739.136-.716.66-1.26 1.368-1.422.333-.076.68-.053 1.007.066.314.115.587.318.779.578.088.119.089.23-.008.346-.102.123-.274.184-.403.252-.37.194-.757.37-.969.775-.163.308-.046.662.277.853.296.174.567.382.867.546.29.157.536.1.741-.142.136-.16.272-.32.418-.47.163-.168.16-.378.009-.556-.22-.258-.522-.426-.803-.609-.348-.228-.565-.556-.56-.984.004-.443.225-.83.57-1.103.275-.218.607-.319.967-.331z"/>
+    </svg>
+    Book via Viber
+  </a>
+  
+</div>
+
+<p style="text-align: center; color: #888; margin-bottom: 2rem; font-size: 0.95rem;">
+  — or fill out the form below —
+</p>
+
         <div class="booking-grid">
-         <div>
-         <form id="bookingForm" class="card" style="position:relative;" novalidate>
+          <div>
+            <form id="bookingForm" class="card" style="position:relative;" novalidate>
     
-        <!-- Honeypot anti-spam -->
-    <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;" aria-hidden="true">
-      <label for="website">Website (leave blank)</label>
-      <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
-    </div>
+              <!-- Honeypot anti-spam -->
+              <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;" aria-hidden="true">
+                <label for="website">Website (leave blank)</label>
+                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+              </div>
     
-    <h3>Select Your Service</h3>
+              <h3>Select Your Service</h3>
     
-    <div class="form-group" style="margin-top:1rem">
+              <div class="form-group" style="margin-top:1rem">
                 <label for="service">Service type</label>
                 <select id="service" name="service" required>
                   <option value="free-consultation">Free Consultation / Assessment (20 min.) - Free</option>
@@ -2407,21 +2500,21 @@ function throttle(func, limit) {
               <div class="form-group">
                 <label for="bk_name">Your name (optional)</label>
                 <input id="bk_name" name="name" type="text" placeholder="Enter your full name" maxlength="100" autocomplete="name" />
-</div>
-<div class="form-group">
-  <label for="bk_email">Email address</label>
-  <input id="bk_email" name="email" type="email" placeholder="your@email.com" required maxlength="254" autocomplete="email" />
-</div>
-<div class="form-group">
-  <label for="bk_phone">Phone (optional)</label>
-  <input id="bk_phone" name="phone" type="tel" placeholder="+45 00 00 00 00" maxlength="20" autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="bk_email">Email address</label>
+                <input id="bk_email" name="email" type="email" placeholder="your@email.com" required maxlength="254" autocomplete="email" />
+              </div>
+              <div class="form-group">
+                <label for="bk_phone">Phone (optional)</label>
+                <input id="bk_phone" name="phone" type="tel" placeholder="+45 00 00 00 00" maxlength="20" autocomplete="tel" />
               </div>
               <div class="form-group">
                 <label for="bk_message">Brief description (optional)</label>
-                <textarea id="bk_message" name="message" placeholder="Do you have any specific concerns?" maxlength="1000"></textarea>
+                <textarea id="bk_message" name="message" placeholder="How can I help you?" maxlength="1000"></textarea>
               </div>
               <button type="submit" class="submit" id="bookingBtn">
-              <span id="bookingBtnText">Request Appointment</span>
+                <span id="bookingBtnText">Request Appointment</span>
               </button>
               <div id="bookingStatus" role="alert" aria-live="polite"></div>
             </form>
@@ -2440,24 +2533,46 @@ function throttle(func, limit) {
       </div>
     </section>
 
-    <section id="contact" class="contact" aria-labelledby="contact-title">
+   <section id="contact" class="contact" aria-labelledby="contact-title">
   <div class="container">
     <h2 class="section-title" id="contact-title">Contact Information</h2>
-        <div class="contact-grid">
-          <div class="info-list">
-            <p><strong>📧 Email:</strong> <a href="mailto:info.mishamorozov@gmail.com">info.mishamorozov@gmail.com</a></p>
-            <p><strong>📱 Phone:</strong> <a href="tel:+4550300360">+45 50 30 03 60</a></p>
-            <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/4550300360" target="_blank" rel="noopener noreferrer">+45 50 30 03 60</a></p>
-             <p><strong>📱 Viber:</strong> <a href="viber://chat?number=+4550300360" target="_blank" rel="noopener noreferrer">+45 50 30 03 60</a></p>
-            <p><strong>📍 Location:</strong> Holstebro, Denmark</p>
-            <p><strong>🕒 Hours:</strong> By appointment only</p>
-          </div>
-          <div>
-            <p style="color:#ccc">Feel free to reach out with any questions about services, scheduling, or how NLP therapy can help you. I typically respond within 24 hours.</p>
-          </div>
-        </div>
+    <div class="contact-grid">
+      <div class="info-list">
+        <p><strong>📧 Email:</strong> <a href="mailto:info.mishamorozov@gmail.com">info.mishamorozov@gmail.com</a></p>
+        <p><strong>📱 Phone:</strong> <a href="tel:+4550300360">+45 50 30 03 60</a></p>
+        <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/4550300360" target="_blank" rel="noopener noreferrer">+45 50 30 03 60</a></p>
+        <p><strong>📱 Viber:</strong> <a href="viber://chat?number=+4550300360" target="_blank" rel="noopener noreferrer">+45 50 30 03 60</a></p>
+        <p><strong>📍 Location:</strong> Holstebro, Denmark</p>
+        <p><strong>🕒 Hours:</strong> By appointment only</p>
       </div>
-    </section>
+      <div>
+        <p style="color:#ccc; margin-bottom: 1.5rem;">Feel free to reach out with any questions about services, scheduling, or how NLP therapy can help you. I typically respond within 24 hours.</p>
+        
+        <!-- Google Maps Embed -->
+        <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2214.5!2d8.6247598!3d56.3494857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464a3547db3eec1f%3A0xc669d2ff8c6a06f0!2sSocialr%C3%A5dgiver%20og%20Psykoterapeut%20Misha%20Morozov!5e0!3m2!1sen!2sdk"
+            width="100%" 
+            height="250" 
+            style="border:0; display: block;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Misha Morozov location - Holstebro, Denmark">
+          </iframe>
+        </div>
+        
+       <!-- Google Review Button -->
+<a href="https://www.google.com/maps/place/Socialr%C3%A5dgiver+og+Psykoterapeut+Misha+Morozov/@56.3494857,8.6247598,17z/data=!4m8!3m7!1s0x464a3547db3eec1f:0xc669d2ff8c6a06f0!8m2!3d56.3494857!4d8.6247598!9m1!1b1!16s%2Fg%2F11vz8dz5bs" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; padding: 0.75rem 1.25rem; background: linear-gradient(135deg, #4285F4, #34A853); color: white; border-radius: 999px; font-weight: 600; text-decoration: none;">
+  ⭐ 5.0 on Google — Leave a Review
+</a>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
   <div class="container">
@@ -2536,10 +2651,28 @@ function throttle(func, limit) {
 
   <footer>
     <div class="container">
+      
+      <!-- Social Media Links -->
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem;">
+        <a href="https://www.facebook.com/profile.php?id=61558609214504" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #1a1a1a; border-radius: 50%; color: #ffffff; text-decoration: none; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1);"
+           aria-label="Facebook"
+           onmouseover="this.style.background='#1877F2'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(24, 119, 242, 0.4)';"
+           onmouseout="this.style.background='#1a1a1a'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+      
+      <div style="width: 60px; height: 1px; background: rgba(255,255,255,0.2); margin: 0 auto 1.5rem;"></div>
+      
       <p>© 2026 Misha Morozov. All rights reserved.</p>
       <p>This website does not provide emergency mental health services.</p>
     </div>
- </footer>
+</footer>
 
   <button id="backToTop" aria-label="Back to top">↑</button>
 </body>
